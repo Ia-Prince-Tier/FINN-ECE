@@ -10,7 +10,9 @@ package Modele;
  * @author tad-t
  */
 public class Void extends Entity {
+    
     public Void() {
+        
         rpz = '#';
     }
     

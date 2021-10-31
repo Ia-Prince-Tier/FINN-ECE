@@ -10,7 +10,9 @@ package Modele;
  * @author tad-t
  */
 public class Wall extends Entity {
+    
     public Wall () {
+        
         rpz = 'M';
     }
     

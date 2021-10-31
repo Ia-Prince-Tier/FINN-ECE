@@ -10,13 +10,12 @@ package Modele;
  * @author tad-t
  */
 public abstract class Entity {
+    
     protected char rpz;
     
     public char Print(){
+        
         return rpz;
     }
-    
-        
-    
     
 }

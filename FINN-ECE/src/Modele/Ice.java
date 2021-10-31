@@ -10,7 +10,9 @@ package Modele;
  * @author tad-t
  */
 public class Ice extends Entity{
+    
     public Ice(){
+        
         rpz = 'o';
     }
     

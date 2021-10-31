@@ -10,7 +10,9 @@ package Modele;
  * @author tad-t
  */
 public class Eportal extends Entity {
+    
     public Eportal(){
+        
         rpz = 'P';
     }
     

@@ -10,7 +10,9 @@ package Modele;
  * @author tad-t
  */
 public class Eceman extends Entity {
+    
     public Eceman() {
+        
         rpz = 'E';
     }
     
