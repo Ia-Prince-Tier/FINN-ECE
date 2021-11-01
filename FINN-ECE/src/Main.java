@@ -19,7 +19,7 @@ public class Main {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        Game1 game = new Game1(1);
+        Game3 game = new Game3(3);
         game.ReadFile();
         game.ViewBoard();
     }
