@@ -1,5 +1,5 @@
 
-import Modele.Game;
+import Modele.*;
 import java.io.IOException;
 
 /*
@@ -19,7 +19,7 @@ public class Main {
      * @throws java.io.IOException
      */
     public static void main(String[] args) throws IOException {
-        Game game = new Game(1);
+        Game1 game = new Game1(1);
         game.ReadFile();
         game.ViewBoard();
     }
