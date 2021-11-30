@@ -9,11 +9,13 @@ package Modele;
  *
  * @author louis
  */
-public class Brick extends Blocks{
+public abstract class Blocks {
     
-    public Brick(){
+    protected char blc;
+    
+    public char Print(){
         
-        blc = 'B';
+        return blc;
     }
     
 }
