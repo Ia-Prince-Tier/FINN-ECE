@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modele;
+package View;
 
 /**
  *
  * @author louis
  */
-public class Tunnel extends Entity{
-    
-    public Tunnel(){
-        
-        rpz = 'T';
-    }
+public class Level4 {
     
 }

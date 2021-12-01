@@ -3,17 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modele;
+package Model;
 
 /**
  *
- * @author louis
+ * @author tad-t
  */
-public class StrongIce extends Entity{
+public class Ice extends Blocks{
     
-    public StrongIce(){
+    public Ice(){
         
-        rpz = 'O';
+        blc = 'o';
     }
     
 }

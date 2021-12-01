@@ -3,17 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modele;
+package Model;
 
 /**
  *
  * @author louis
  */
-public class Brick extends Blocks{
+public abstract class Objects {
     
-    public Brick(){
+    protected char obj;
+    
+    public char Print(){
         
-        blc = 'B';
+        return obj;
     }
-    
 }
