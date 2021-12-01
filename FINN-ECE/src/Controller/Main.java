@@ -20,50 +20,27 @@ public class Main {
      */
     public static void main(String[] args) {        
         
-        Level1 first_board = new Level1(15,19);
-        first_board.DisplayLevel1();
-        //Eceman eceman = new Eceman();
-        
+        Movement key_move = new Movement();
+        int i = 1;
         Scanner sc = new Scanner(System.in);
         
-        int i = 1;
+        //Level one
+        Level1 first_board = new Level1(15,19);
+        first_board.DisplayLevel1();
         
-        while (i < 1000){
-            
-            System.out.println("choose a move : z (up) / q (left) / s (down) / d (right) -- then press enter to valide");
-            
-            char key = sc.next().charAt(0);
-            
-            //Movement key_move = new Movement(key);
-            
-            //key_move.Move(key);
-
-            switch(key){
-            
-                case 'z': //go up
-                    first_board.GoUp();
-                    first_board.DisplayLevel1();
-                    break;
-                
-                case 's': //go down
-                    first_board.GoDown();
-                    first_board.DisplayLevel1();
-                    break;
-                
-                case 'q': //go left
-                    first_board.GoLeft();
-                    first_board.DisplayLevel1();
-                    break;
-                
-                case 'd': //go right
-                    first_board.GoRight();
-                    first_board.DisplayLevel1();
-                    break;
-                
-                default:
-                    break;           
-            }          
+        while (i < 1000){            
+            System.out.println("choose a move : z (up) / q (left) / s (down) / d (right) -- then press enter to valide");            
+            char key = sc.next().charAt(0);           
+            key_move.Move1(key);    
             i++;
-        }                                       
+        }
+        
+        //Level two
+        
+        //Level three
+        
+        //Level four
+        
+        //Level five
     }
 }
