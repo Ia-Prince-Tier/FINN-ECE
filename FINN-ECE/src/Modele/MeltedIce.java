@@ -9,15 +9,9 @@ package Modele;
  *
  * @author tad-t
  */
-public abstract class Entity {
-    protected char rpz;
-    
-    public char Print(){
-        return rpz;
+public class MeltedIce extends Entity {
+    public MeltedIce(){
+        rpz = 'W';
     }
-    
-    
-        
-    
     
 }

@@ -1,4 +1,5 @@
 
+import Controlleur.Movement;
 import Modele.Game;
 import java.io.IOException;
 
@@ -18,9 +19,26 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws IOException {
-        Game game = new Game(1);
-        game.ReadFile();
-        game.ViewBoard();
+        
+        Game game = new Game();
+        
+        
+        game.ShowMainMenu();
+        
+        boolean next = false;
+        while(!next){  
+            char input = Movement.GetInput();
+            next = game.UpdateMainMenu(input);
+              
+        }
+        
+        next = false;
+        game.ShowLevel();
+        while(!next){
+            char input = Movement.GetInput();
+            game.UpdateLevel(input);
+        }
+        
     }
     
 }
