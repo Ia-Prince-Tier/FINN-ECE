@@ -69,7 +69,108 @@ public class Level {
         return board;
     }
     
+ /*
+    private static Entity[][] Level3(){
+        
+        Entity[][] board = new Entity[nb_col][nb_lig];
+        
+        //Empty display
+        for(int i = 0; i < nb_col; i++){
+            for(int j = 0; j < nb_lig; j++){
+                
+                board[i][j] = new Void();
+            }
+        }
+        
+        //Wall display
+        for(int k = 3; k <= 11; k++){
+            
+            board[7][k] = new Wall();
+        }
+        for(int k = 3; k <= 11; k++){
+            
+            board[14][k] = new Wall();
+        }
+        
+        for(int k = 3; k <= 11; k++){
+            
+            board[8][k] = new Wall();
+        }
+        for(int k = 3; k <= 11; k++){
+            
+            board[9][k] = new Wall();
+        }
     
+        for(int k = 3; k <= 11; k++){
+            
+            board[10][k] = new Wall();
+        }
+        
+        for(int k = 3; k <= 11; k++){
+            
+            board[11][k] = new Wall();
+        }
+    
+        for(int k = 3; k <= 11; k++){
+            
+            board[12][k] = new Wall();
+        }
+    
+        for(int k = 3; k <= 11; k++){
+            
+            board[13][k] = new Wall();
+        }
+    
+        //Ice display
+        for(int k = 4; k <= 6; k++){
+            
+            board[8][k] = new Ice();
+        }
+    
+        for(int k = 8; k <= 9; k++){
+            
+            board[13][k] = new Ice();
+        }
+    
+        for(int k = 9; k <= 11; k++){
+            
+            board[k][6] = new Ice();
+        }
+    
+        for(int k = 9; k <= 11; k++){
+            
+            board[k][8] = new Ice();
+        }
+    
+        for(int k = 9; k <= 12; k++){
+            
+            board[8][10] = new Ice();
+        }
+    
+        board[12][7] = new Ice();
+        
+        //Portal display
+        board[5][14] = new Eportal();
+        
+        //Eceman display
+        board[9][8] = new Eceman();
+    
+        //Potion de legerete display
+        board[6][8] = new popol();
+    
+        //Tondeuse display
+        board[9][6] = new tondeuse();
+    
+        //movin bricks display
+        board [][] = new Mbrick ();
+    
+        //Fusion Wall Display 
+        board [][] = new FusionWall ();
+        
+        return board;
+    }
+    
+*/
     
     public static Entity[][] Update(Entity[][] board,char input){
         
