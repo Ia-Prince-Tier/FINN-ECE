@@ -7,6 +7,7 @@ package Controller;
 
 import View.Level1;
 import View.Level2;
+import View.Level4;
 import java.util.Scanner;
 
 /**
@@ -37,7 +38,7 @@ public class Main {
         }*/
         
         //Level two        
-        Level2 second_board = new Level2(15,19);
+        /*Level2 second_board = new Level2(15,19);
         second_board.DisplayLevel2();
         
         while (i < 1000){            
@@ -45,11 +46,20 @@ public class Main {
             char key = sc.next().charAt(0);           
             key_move.Move2(key);    
             i++;
-        }
+        }*/
         
         //Level three
         
         //Level four
+        Level4 fourth_board = new Level4(15,19);
+        fourth_board.DisplayLevel4();
+        
+        while (i < 1000){            
+            System.out.println("choose a move : z (up) / q (left) / s (down) / d (right) -- then press enter to valide");            
+            char key = sc.next().charAt(0);           
+            key_move.Move4(key);    
+            i++;
+        }
         
         //Level five
     }
