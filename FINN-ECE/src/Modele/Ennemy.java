@@ -12,7 +12,7 @@ package Modele;
 public class Ennemy extends Entity {
 
     public Ennemy() {
-        rpz = 'E';
+        rpz = 'G';
     }
      
 }

@@ -25,7 +25,9 @@ public class Level {
             case 3:
                 return Level3();
             case 4:
-                return Level4();                        
+                return Level4();    
+            case 5:
+                return Level5();
         }
         return null;
     }
@@ -435,6 +437,7 @@ public class Level {
        
        //Ennemi display
         board[5][6] = new Ennemy();
+        
         return board;
     }
      
@@ -459,7 +462,8 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
-                    if(board[i][i-1].Print() == 'o' || board[i][i-1].Print() == 'O' || board[i][i-1].Print() == 'P'){ //Test the legitimcy of the movement
+                    if(board[i-1][j].Print() == 'o' || board[i-1][j].Print() == 'O' || board[i-1][j].Print() == 'P'
+                            || board[i-1][j].Print() == 'L' || board[i-1][j].Print() == 'T'){ //Test the legitimcy of the movement
                         /*if(tmp == 'O'){
                             tmp = board[i][i-1].Print();
                             board[i][j].rpz = 'o'; //Remplace ice by water after eceman walk on it
@@ -468,7 +472,7 @@ public class Level {
                         else{
                             tmp = board[i][i-1].Print();*/
                             board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                            board[i][i-1] = new Eceman(); //Remplace the legit case by eceman
+                            board[i-1][j] = new Eceman(); //Remplace the legit case by eceman
                         //}                        
                     }
                     else{
@@ -485,7 +489,8 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
-                    if(board[i][i+1].Print() == 'o' || board[i][i+1].Print() == 'O' || board[i][i+1].Print() == 'P'){ //Test the legitimcy of the movement
+                    if(board[i+1][j].Print() == 'o' || board[i+1][j].Print() == 'O' || board[i+1][j].Print() == 'P'
+                            || board[i+1][j].Print() == 'L' || board[i+1][j].Print() == 'T'){ //Test the legitimcy of the movement
                         /*if(tmp == 'O'){
                             tmp = board[i][i+1].Print();
                             board[i][j].rpz = 'o'; //Remplace ice by water after eceman walk on it
@@ -494,7 +499,7 @@ public class Level {
                         else{
                             tmp = board[i][i+1].Print();*/
                             board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                            board[i][i+1] = new Eceman(); //Remplace the legit case by eceman
+                            board[i+1][j] = new Eceman(); //Remplace the legit case by eceman
                         //}                        
                     }
                     else{
@@ -510,7 +515,8 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
-                    if(board[i][j-1].Print() == 'o' || board[i][j-1].Print() == 'O' || board[i][j-1].Print() == 'P'){ //Test the legitimcy of the movement
+                    if(board[i][j-1].Print() == 'o' || board[i][j-1].Print() == 'O' || board[i][j-1].Print() == 'P'
+                            || board[i][j-1].Print() == 'L' || board[i][j-1].Print() == 'T'){ //Test the legitimcy of the movement
                         /*if(tmp == 'O'){
                             tmp = board[i][j-1].Print();
                             board[i][j].rpz = 'o'; //Remplace ice by water after eceman walk on it
@@ -536,7 +542,8 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
-                    if(board[i][j+1].Print() == 'o' || board[i][j+1].Print() == 'O' || board[i][j+1].Print() == 'P'){ //Test the legitimcy of the movement
+                    if(board[i][j+1].Print() == 'o' || board[i][j+1].Print() == 'O' || board[i][j+1].Print() == 'P'
+                            || board[i][j+1].Print() == 'L' || board[i][j+1].Print() == 'T'){ //Test the legitimcy of the movement
                         /*if(tmp == 'O'){
                             tmp = board[i][j+1].Print();
                             board[i][j].rpz = 'o'; //Remplace ice by water after eceman walk on it
