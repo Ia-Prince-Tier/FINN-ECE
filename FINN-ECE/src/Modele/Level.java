@@ -171,6 +171,60 @@ public class Level {
         
         return board;
     }
+    
+    private static Entity[][] Level5(){
+        
+        Entity[][] board = new Entity[nb_col][nb_lig];
+        
+        //Empty display
+        for(int i = 0; i < nb_col; i++){
+            for(int j = 0; j < nb_lig; j++){
+                
+                board[i][j] = new Void();
+            }
+        }
+        
+        //Wall display
+        for(int k = 2; k <= 11; k++){
+            
+            board[k][4] = new Wall();
+        }
+        for(int k = 2; k <= 11; k++){
+            
+            board[k][6] = new Wall();
+        }
+        for(int k = 1; k <= 9; k++){
+            
+            board[5][k] = new Wall();
+        }
+        for(int k = 1; k <= 9; k++){
+            
+            board[7][k] = new Wall();
+        }
+        
+        //Ice display
+        for(int k = 3; k <= 10; k++){
+            
+            board[k][5] = new Ice();
+        }
+        
+        //Portal display
+        board[3][5] = new Eportal();
+        
+        //Eceman display
+        board[10][5] = new Eceman();
+        
+        //Ennemi display
+        board[6][5] = new Ennemy();
+        
+        //Eceman move tiles display
+       for(int k = 2; k <= 8; k++){
+            
+            board[6][k] = new Wall();
+        }
+        
+        return board;
+    }
        
     public static Entity[][] Update(Entity[][] board,char input){
         
