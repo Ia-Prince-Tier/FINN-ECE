@@ -10,8 +10,8 @@ package Modele;
  * @author tad-t
  */
 public class Level {
-    private final static int nb_col = 15;
-    private final static int nb_lig = 19;
+    private final static int nb_lig = 15;
+    private final static int nb_col = 19;
     private static char tmp;
 
      //ajouter au case les autres level et créer la fonction correspondante
@@ -32,11 +32,11 @@ public class Level {
     
     private static Entity[][] Level1() {
         
-        Entity[][] board = new Entity[nb_col][nb_lig];
+        Entity[][] board = new Entity[nb_lig][nb_col];
         
         //Empty display
-        for(int i = 0; i < nb_col; i++){
-            for(int j = 0; j < nb_lig; j++){
+        for(int i = 0; i < nb_lig; i++){
+            for(int j = 0; j < nb_col; j++){
                 
                 board[i][j] = new Void();
             }
@@ -76,11 +76,11 @@ public class Level {
     }
     
     private static Entity[][] Level2() {
-        Entity[][] board = new Entity[nb_col][nb_lig];
+        Entity[][] board = new Entity[nb_lig][nb_col];
         
         //Empty display
-        for(int i = 0; i < nb_col; i++){
-            for(int j = 0; j < nb_lig; j++){
+        for(int i = 0; i < nb_lig; i++){
+            for(int j = 0; j < nb_col; j++){
                 
                 board[i][j] = new Void();
             }
@@ -211,113 +211,113 @@ public class Level {
     }
     
     private static Entity[][] Level3() {
-        Entity[][] board = new Entity[nb_col][nb_lig];
+        Entity[][] board = new Entity[nb_lig][nb_col];
 
-        //Empty display
-        for(int i = 0; i < nb_col; i++){
-            for(int j = 0; j < nb_lig; j++){
-
+        for(int i = 0; i < nb_lig; i++){
+            for(int j = 0; j < nb_col; j++){
+                
                 board[i][j] = new Void();
             }
         }
-
+        
         //Wall display
         for(int k = 3; k <= 11; k++){
-
-            board[7][k] = new Wall();
+            
+            board[k][7] = new Wall();
         }
         for(int k = 3; k <= 11; k++){
-
-            board[14][k] = new Wall();
+            
+            board[k][14] = new Wall();
         }
-
+        
         for(int k = 3; k <= 11; k++){
-
-            board[8][k] = new Wall();
+            
+            board[k][8] = new Wall();
         }
         for(int k = 3; k <= 11; k++){
-
-            board[9][k] = new Wall();
+            
+            board[k][9] = new Wall();
         }
-
+    
         for(int k = 3; k <= 11; k++){
-
-            board[10][k] = new Wall();
+            
+            board[k][10] = new Wall();
         }
-
+        
         for(int k = 3; k <= 11; k++){
-
-            board[11][k] = new Wall();
+            
+            board[k][11] = new Wall();
         }
-
+    
         for(int k = 3; k <= 11; k++){
-
-            board[12][k] = new Wall();
+            
+            board[k][12] = new Wall();
         }
-
+    
         for(int k = 3; k <= 11; k++){
-
-            board[13][k] = new Wall();
+            
+            board[k][13] = new Wall();
         }
-
+    
         //Ice display
         for(int k = 4; k <= 6; k++){
-
-            board[8][k] = new Ice();
-        }
-
-        for(int k = 8; k <= 9; k++){
-
-            board[13][k] = new Ice();
-        }
-
-        for(int k = 9; k <= 11; k++){
-
-            board[k][6] = new Ice();
-        }
-
-        for(int k = 9; k <= 11; k++){
-
+            
             board[k][8] = new Ice();
         }
-
-        for(int k = 9; k <= 12; k++){
-
-            board[k][10] = new Ice();
+    
+        for(int k = 8; k <= 9; k++){
+            
+            board[k][13] = new Ice();
         }
-
-        board[12][7] = new Ice();
+    
+        for(int k = 9; k <= 11; k++){
+            
+            board[6][k] = new Ice();
+        }
+    
+        for(int k = 9; k <= 11; k++){
+            
+            board[8][k] = new Ice();
+        }
+    
+        for(int k = 9; k <= 12; k++){
+            
+            board[10][k] = new Ice();
+        }
+    
+        board[7][12] = new Ice();
         
         //Portal display
-        board[9][3] = new Eportal();
-
+        board[3][9] = new Eportal();
+        
         //Eceman display
-        board[13][11] = new Eceman();
-
+        board[11][13] = new Eceman();
+    
         //Potion de legerete display
-        board[13][10] = new Popol();
-
+        board[10][13] = new Popol();
+    
         //Tondeuse display
-        board[12][8] = new tondeuse();
-
+        board[8][12] = new Tondeuse();
+    
         //movin bricks display
-        board [9][4] = new Mbrick ();
-        board [12][6] = new Mbrick ();
-
+        board [4][9] = new Mbrick ();
+        board [6][12] = new Mbrick ();
+    
         //Fusion Wall Display 
-        board [10][4] = new FusionWall ();
-        board [12][5] = new FusionWall ();
-
+        board [4][10] = new FusionWall ();
+        board [5][12] = new FusionWall ();
+        
         return board;
+
     }
     
     private static Entity[][] Level4() {
         
-        Entity[][] board = new Entity[nb_col][nb_lig];
+        Entity[][] board = new Entity[nb_lig][nb_col];
         
         //Empty display
-        for(int i = 0; i < nb_col; i++){
-            for(int j = 0; j < nb_lig; j++){
+        for(int i = 0; i < nb_lig; i++){
+            for(int j = 0; j < nb_col; j++){
                 
                 board[i][j] = new Void();
             }
@@ -380,6 +380,64 @@ public class Level {
         return board;
     }
     
+     private static Entity[][] Level5(){
+        
+        Entity[][] board = new Entity[nb_lig][nb_col];
+        
+        //Empty display
+        for(int i = 0; i < nb_lig; i++){
+            for(int j = 0; j < nb_col; j++){
+                
+                board[i][j] = new Void();
+            }
+        }
+        
+        //Wall display
+        for(int k = 2; k <= 11; k++){
+            
+            board[4][k] = new Wall();
+        }
+        for(int k = 2; k <= 11; k++){
+            
+            board[6][k] = new Wall();
+        }
+        for(int k = 1; k <= 9; k++){
+            
+            board[k][5] = new Wall();
+        }
+        for(int k = 1; k <= 9; k++){
+            
+            board[k][7] = new Wall();
+        }
+        
+        board[1][6] = new Wall();
+        board[5][2] = new Wall();
+        board[5][11] = new Wall();
+        board[9][6] = new Wall();
+        
+        //Ice display
+        for(int k = 3; k <= 10; k++){
+            
+            board[5][k] = new Ice();
+        }
+        
+        //Portal display
+        board[5][3] = new Eportal();
+        
+        //Eceman display
+        board[5][10] = new Eceman();
+        
+        //Eceman move tiles display
+       for(int k = 2; k <= 8; k++){
+            
+            board[k][6] = new EnnemyMove();
+        }
+       
+       //Ennemi display
+        board[5][6] = new Ennemy();
+        return board;
+    }
+     
     public static Entity[][] Update(Entity[][] board,char input) {
         
         switch(input){
@@ -401,7 +459,7 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
-                    if(board[i][i-1].Print() == 'o' || board[i][i-1].Print() == 'O'){ //Test the legitimcy of the movement
+                    if(board[i][i-1].Print() == 'o' || board[i][i-1].Print() == 'O' || board[i][i-1].Print() == 'P'){ //Test the legitimcy of the movement
                         /*if(tmp == 'O'){
                             tmp = board[i][i-1].Print();
                             board[i][j].rpz = 'o'; //Remplace ice by water after eceman walk on it
@@ -409,8 +467,8 @@ public class Level {
                         }
                         else{
                             tmp = board[i][i-1].Print();*/
-                            board[i][j].rpz = 'w'; //Remplace ice by water after eceman walk on it
-                            board[i][i-1].rpz = 'E'; //Remplace the legit case by eceman
+                            board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                            board[i][i-1] = new Eceman(); //Remplace the legit case by eceman
                         //}                        
                     }
                     else{
@@ -427,7 +485,7 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
-                    if(board[i][i+1].Print() == 'o' || board[i][i+1].Print() == 'O'){ //Test the legitimcy of the movement
+                    if(board[i][i+1].Print() == 'o' || board[i][i+1].Print() == 'O' || board[i][i+1].Print() == 'P'){ //Test the legitimcy of the movement
                         /*if(tmp == 'O'){
                             tmp = board[i][i+1].Print();
                             board[i][j].rpz = 'o'; //Remplace ice by water after eceman walk on it
@@ -435,8 +493,8 @@ public class Level {
                         }
                         else{
                             tmp = board[i][i+1].Print();*/
-                            board[i][j].rpz = 'w'; //Remplace ice by water after eceman walk on it
-                            board[i][i+1].rpz = 'E'; //Remplace the legit case by eceman
+                            board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                            board[i][i+1] = new Eceman(); //Remplace the legit case by eceman
                         //}                        
                     }
                     else{
@@ -452,7 +510,7 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
-                    if(board[i][j-1].Print() == 'o' || board[i][j-1].Print() == 'O'){ //Test the legitimcy of the movement
+                    if(board[i][j-1].Print() == 'o' || board[i][j-1].Print() == 'O' || board[i][j-1].Print() == 'P'){ //Test the legitimcy of the movement
                         /*if(tmp == 'O'){
                             tmp = board[i][j-1].Print();
                             board[i][j].rpz = 'o'; //Remplace ice by water after eceman walk on it
@@ -460,8 +518,8 @@ public class Level {
                         }
                         else{
                             tmp = board[i][j-1].Print();*/
-                            board[i][j].rpz = 'w'; //Remplace ice by water after eceman walk on it
-                            board[i][j-1].rpz = 'E'; //Remplace the legit case by eceman
+                            board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                            board[i][j-1] = new Eceman(); //Remplace the legit case by eceman
                         //}                        
                     }
                     else{
@@ -478,7 +536,7 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
-                    if(board[i][j+1].Print() == 'o' || board[i][j+1].Print() == 'O'){ //Test the legitimcy of the movement
+                    if(board[i][j+1].Print() == 'o' || board[i][j+1].Print() == 'O' || board[i][j+1].Print() == 'P'){ //Test the legitimcy of the movement
                         /*if(tmp == 'O'){
                             tmp = board[i][j+1].Print();
                             board[i][j].rpz = 'o'; //Remplace ice by water after eceman walk on it
@@ -486,8 +544,8 @@ public class Level {
                         }
                         else{
                             tmp = board[i][j+1].Print();*/
-                            board[i][j].rpz = 'w'; //Remplace ice by water after eceman walk on it
-                            board[i][j+1].rpz = 'E'; //Remplace the legit case by eceman
+                            board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                            board[i][j+1] = new Eceman(); //Remplace the legit case by eceman
                         //}                        
                     }
                     else{

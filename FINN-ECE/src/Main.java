@@ -29,7 +29,6 @@ public class Main {
         while(!next){  
             char input = Movement.GetInput();
             next = game.UpdateMainMenu(input);
-              
         }
         
         next = false;

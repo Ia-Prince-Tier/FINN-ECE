@@ -32,7 +32,7 @@ public class Game {
         menu += "Nouvelle partie -> 2\n";
         menu += "Règles -> 3\n";
         menu += "Score -> 4\n";
-        menu += "Touche déplacement -> 4\n";
+        menu += "Touche déplacement -> 5\n";
         ShowScreen.Show(menu);
     }
     
@@ -44,14 +44,13 @@ public class Game {
         ShowScreen.Show("Continuer");
         //récupérer ici dans un fichier le level sauvegarder
         this.level = 1;
-        board = Level.Getlevel(level);
-        
+        this.board = Level.Getlevel(level);       
     }
     
     private void NewGame(){
         ShowScreen.Show("Nouvelle partie");
-        this.level = 1;
-        board = Level.Getlevel(level);
+        this.level = 2;
+        this.board = Level.Getlevel(level);
     }
         
     private void ShowRegles(){
@@ -115,11 +114,11 @@ public class Game {
     
     public void UpdateLevel(char input){
         if(input == 'z' || input == 'q' || input == 's' || input == 'd')
-            board = Level.Update(board,input);
+            this.board = Level.Update(this.board,input);
         if(CheckEndLevel()){
-            ShowScreen.Show("GAGNeraccent");
+            ShowScreen.Show("WIN");
         }else
-            ShowScreen.ShowLevel(board);
+            ShowScreen.ShowLevel(this.board);
     }
     
     private boolean CheckEndLevel(){
