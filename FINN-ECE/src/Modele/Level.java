@@ -10,8 +10,8 @@ package Modele;
  * @author tad-t
  */
 public class Level {
-    private final static int nb_col = 15;
-    private final static int nb_lig = 19;
+    private final static int nb_lig = 15;
+    private final static int nb_col = 19;
 
 
      //ajouter au case les autres level et créer la fonction correspondante
@@ -26,11 +26,11 @@ public class Level {
     
     private static Entity[][] Level1(){
         
-        Entity[][] board = new Entity[nb_col][nb_lig];
+        Entity[][] board = new Entity[nb_lig][nb_col];
         
         //Empty display
-        for(int i = 0; i < nb_col; i++){
-            for(int j = 0; j < nb_lig; j++){
+        for(int i = 0; i < nb_lig; i++){
+            for(int j = 0; j < nb_col; j++){
                 
                 board[i][j] = new Void();
             }
@@ -72,11 +72,11 @@ public class Level {
  
     private static Entity[][] Level3(){
         
-        Entity[][] board = new Entity[nb_col][nb_lig];
+        Entity[][] board = new Entity[nb_lig][nb_col];
         
         //Empty display
-        for(int i = 0; i < nb_col; i++){
-            for(int j = 0; j < nb_lig; j++){
+        for(int i = 0; i < nb_lig; i++){
+            for(int j = 0; j < nb_col; j++){
                 
                 board[i][j] = new Void();
             }
@@ -85,100 +85,100 @@ public class Level {
         //Wall display
         for(int k = 3; k <= 11; k++){
             
-            board[7][k] = new Wall();
+            board[k][7] = new Wall();
         }
         for(int k = 3; k <= 11; k++){
             
-            board[14][k] = new Wall();
-        }
-        
-        for(int k = 3; k <= 11; k++){
-            
-            board[8][k] = new Wall();
-        }
-        for(int k = 3; k <= 11; k++){
-            
-            board[9][k] = new Wall();
-        }
-    
-        for(int k = 3; k <= 11; k++){
-            
-            board[10][k] = new Wall();
+            board[k][14] = new Wall();
         }
         
         for(int k = 3; k <= 11; k++){
             
-            board[11][k] = new Wall();
+            board[k][8] = new Wall();
+        }
+        for(int k = 3; k <= 11; k++){
+            
+            board[k][9] = new Wall();
         }
     
         for(int k = 3; k <= 11; k++){
             
-            board[12][k] = new Wall();
+            board[k][10] = new Wall();
+        }
+        
+        for(int k = 3; k <= 11; k++){
+            
+            board[k][11] = new Wall();
         }
     
         for(int k = 3; k <= 11; k++){
             
-            board[13][k] = new Wall();
+            board[k][12] = new Wall();
+        }
+    
+        for(int k = 3; k <= 11; k++){
+            
+            board[k][13] = new Wall();
         }
     
         //Ice display
         for(int k = 4; k <= 6; k++){
             
-            board[8][k] = new Ice();
+            board[k][8] = new Ice();
         }
     
         for(int k = 8; k <= 9; k++){
             
-            board[13][k] = new Ice();
+            board[k][13] = new Ice();
         }
     
         for(int k = 9; k <= 11; k++){
             
-            board[k][6] = new Ice();
+            board[6][k] = new Ice();
         }
     
         for(int k = 9; k <= 11; k++){
             
-            board[k][8] = new Ice();
+            board[8][k] = new Ice();
         }
     
         for(int k = 9; k <= 12; k++){
             
-            board[k][10] = new Ice();
+            board[10][k] = new Ice();
         }
     
-        board[12][7] = new Ice();
+        board[7][12] = new Ice();
         
         //Portal display
-        board[9][3] = new Eportal();
+        board[3][9] = new Eportal();
         
         //Eceman display
-        board[13][11] = new Eceman();
+        board[11][13] = new Eceman();
     
         //Potion de legerete display
-        board[13][10] = new Popol();
+        board[10][13] = new Popol();
     
         //Tondeuse display
-        board[12][8] = new tondeuse();
+        board[8][12] = new tondeuse();
     
         //movin bricks display
-        board [9][4] = new Mbrick ();
-        board [12][6] = new Mbrick ();
+        board [4][9] = new Mbrick ();
+        board [6][12] = new Mbrick ();
     
         //Fusion Wall Display 
-        board [10][4] = new FusionWall ();
-        board [12][5] = new FusionWall ();
+        board [4][10] = new FusionWall ();
+        board [5][12] = new FusionWall ();
         
         return board;
     }
     
     private static Entity[][] Level5(){
         
-        Entity[][] board = new Entity[nb_col][nb_lig];
+        Entity[][] board = new Entity[nb_lig][nb_col];
         
         //Empty display
-        for(int i = 0; i < nb_col; i++){
-            for(int j = 0; j < nb_lig; j++){
+        for(int i = 0; i < nb_lig; i++){
+            for(int j = 0; j < nb_col; j++){
                 
                 board[i][j] = new Void();
             }
@@ -187,40 +187,40 @@ public class Level {
         //Wall display
         for(int k = 2; k <= 11; k++){
             
-            board[k][4] = new Wall();
+            board[4][k] = new Wall();
         }
         for(int k = 2; k <= 11; k++){
             
-            board[k][6] = new Wall();
+            board[6][k] = new Wall();
         }
         for(int k = 1; k <= 9; k++){
             
-            board[5][k] = new Wall();
+            board[k][5] = new Wall();
         }
         for(int k = 1; k <= 9; k++){
             
-            board[7][k] = new Wall();
+            board[k][7] = new Wall();
         }
         
         //Ice display
         for(int k = 3; k <= 10; k++){
             
-            board[k][5] = new Ice();
+            board[5][k] = new Ice();
         }
         
         //Portal display
-        board[3][5] = new Eportal();
+        board[5][3] = new Eportal();
         
         //Eceman display
-        board[10][5] = new Eceman();
+        board[5][10] = new Eceman();
         
         //Ennemi display
-        board[6][5] = new Ennemy();
+        board[5][6] = new Ennemy();
         
         //Eceman move tiles display
        for(int k = 2; k <= 8; k++){
             
-            board[6][k] = new Wall();
+            board[k][6] = new Wall();
         }
         
         return board;
