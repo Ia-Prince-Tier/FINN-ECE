@@ -50,7 +50,7 @@ public class Game {
     
     private void NewGame(){
         ShowScreen.Show("Nouvelle partie");
-        this.level = 5;
+        this.level = 1;
         board = Level.Getlevel(level);
     }
         
