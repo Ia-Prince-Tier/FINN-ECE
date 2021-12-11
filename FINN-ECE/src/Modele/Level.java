@@ -69,7 +69,7 @@ public class Level {
         return board;
     }
     
- /*
+ 
     private static Entity[][] Level3(){
         
         Entity[][] board = new Entity[nb_col][nb_lig];
@@ -144,34 +144,34 @@ public class Level {
     
         for(int k = 9; k <= 12; k++){
             
-            board[8][10] = new Ice();
+            board[k][10] = new Ice();
         }
     
         board[12][7] = new Ice();
         
         //Portal display
-        board[5][14] = new Eportal();
+        board[9][3] = new Eportal();
         
         //Eceman display
-        board[9][8] = new Eceman();
+        board[13][11] = new Eceman();
     
         //Potion de legerete display
-        board[6][8] = new popol();
+        board[13][10] = new Popol();
     
         //Tondeuse display
-        board[9][6] = new tondeuse();
+        board[12][8] = new tondeuse();
     
         //movin bricks display
-        board [][] = new Mbrick ();
+        board [9][4] = new Mbrick ();
+        board [12][6] = new Mbrick ();
     
         //Fusion Wall Display 
-        board [][] = new FusionWall ();
+        board [10][4] = new FusionWall ();
+        board [12][5] = new FusionWall ();
         
         return board;
     }
-    
-*/
-    
+       
     public static Entity[][] Update(Entity[][] board,char input){
         
         switch(input){
