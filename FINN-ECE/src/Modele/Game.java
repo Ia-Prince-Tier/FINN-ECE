@@ -131,14 +131,17 @@ public class Game {
         return false;
     }
     
-    public void UpdateLevel(char input){
+    public void UpdateLevel(char input,float seconds){
         Pair tapair = new Pair(1,1);
+        time += seconds;
         if(input == 'z' || input == 'q' || input == 's' || input == 'd')
             tapair = Level.Update(board,input, tmp);
             this.board = (Entity[][]) tapair.getKey();
             this.tmp = (String) tapair.getValue();
             System.out.println(tmp);
         if(CheckEndLevel()){
+            System.out.print(time);
+            SaveTime();
             ShowScreen.Show("WIN");
             this.level += 1;
             SaveLevel();
@@ -153,6 +156,28 @@ public class Game {
     public int getLevel() {
         return level;
     }
+    
+    public void SaveTime(){
+  try {
+
+   String content = String.valueOf(this.time);;
+   String fileName = "score_" + String.valueOf(this.level)+".txt";
+   File file = new File(fileName);
+
+   // créer le fichier s'il n'existe pas
+   if (!file.exists()) {
+    file.createNewFile();
+   }
+
+   FileWriter fw = new FileWriter(file.getAbsoluteFile());
+   BufferedWriter bw = new BufferedWriter(fw);
+   bw.write(content);
+   bw.close();
+
+  } catch (IOException e) {
+   e.printStackTrace();
+  }
+ }
     
     public void SaveLevel(){
   try {

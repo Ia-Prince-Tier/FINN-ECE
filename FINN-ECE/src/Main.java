@@ -34,8 +34,14 @@ public class Main {
         next = false;
         game.ShowLevel();
         while(!next){
+            long tempsDebut = System.currentTimeMillis();
+            System.out.print(tempsDebut);
+            long tempsFin = System.currentTimeMillis();
+            System.out.print(tempsFin);
+            float seconds = (tempsFin - tempsDebut) / 1000F;
+            System.out.print(seconds);
             char input = Movement.GetInput();
-            game.UpdateLevel(input);
+            game.UpdateLevel(input,seconds);
         }
         
     }
