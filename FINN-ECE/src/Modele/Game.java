@@ -138,6 +138,10 @@ public class Game {
         }else
             ShowScreen.ShowLevel(this.board);
     }
+
+    public int getLevel() {
+        return level;
+    }   
     
     private boolean CheckEndLevel(){
         return Level.CheckEnd(board);
