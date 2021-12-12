@@ -89,7 +89,14 @@ public class Game {
      */
     private void ShowRegles(){
         String menu = "";
-        menu += "les règles ici lol\n";
+        menu += "Pour réussir un level, Eceman 'E' devra se déplacer jusqu'au Portail 'P'.\n\n"
+                +"Il devra briser toutes les cases de glaces (en passant 2 fois sur la glace épaisse 'O' qui deviendra de la glace fine 'o') pour terminer un niveau.\n\n"
+                +"La potion de légereté 'L' permettra à Eceman de passer sur la glace sans la casser.\n\n" 
+                +"Le tunnel permet à Eceman de se déplacer d'un endroit à l'autre du niveau. 'x' est la porte d'entrée du tunnel et 'X' la porte de sortie.\n\n" 
+                +"La tondeuse 'T' peut être poussée par Eceman et briser toute la glace sur sa lancée jusqu’à s’arrêter sur un mur.\n\n"
+                +"Eceman peut déplacer des briques de murs 'm' (sur les emplacements 'Z' possibles pour ces murs amovibles) afin d'ouvrir le passage jusqu'au portail de fin.\n\n"
+                +"Lors du dernier niveau Eceman pourra rencontrer un ennemi 'G' pouvant le géner dans ses deplacement.\n\n"
+                + " \n";
         menu += "RETOUR -> 1\n";
         ShowScreen.Show(menu);
     }
@@ -104,6 +111,7 @@ public class Game {
         menu += "level 2 -> " + String.valueOf(LoadHighScore(2)) + "\n";  
         menu += "level 3 -> " + String.valueOf(LoadHighScore(3)) + "\n";  
         menu += "level 4 -> " + String.valueOf(LoadHighScore(4)) + "\n";  
+        menu += "level 5 -> " + String.valueOf(LoadHighScore(5)) + "\n"; 
         menu += "RETOUR -> 1";
         ShowScreen.Show(menu);
     }
@@ -114,7 +122,10 @@ public class Game {
      */
     private void ShowMovement(){
         String menu = "";
-        menu += "comment jouer ici trop simple\n";
+        menu += "Eceman peut se déplacer à gauche en utilisant 'q'\n";
+        menu += " à droite en utilisant 'd'\n";
+        menu += " en haut en utilisant 'z'\n";
+        menu += " en bas en utilisant 's'\n\n";
         menu += "RETOUR -> 1";
         ShowScreen.Show(menu);
     }
@@ -275,6 +286,7 @@ public class Game {
         menu += "level 2 -> " + String.valueOf(LoadHighScore(2)) + "\n";  
         menu += "level 3 -> " + String.valueOf(LoadHighScore(3)) + "\n";  
         menu += "level 4 -> " + String.valueOf(LoadHighScore(4)) + "\n";  
+        menu += "level 5 -> " + String.valueOf(LoadHighScore(5)) + "\n"; 
         menu += "Merci d'avoir jouer ! \n";
         ShowScreen.Show(menu);
     }
