@@ -486,6 +486,7 @@ public class Level {
     
     
     private static Entity[][] GoDown(Entity[][] board) {
+        int n = 0;
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
@@ -500,6 +501,10 @@ public class Level {
                             tmp = board[i][i+1].Print();*/
                             board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
                             board[i+1][j] = new Eceman(); //Remplace the legit case by eceman
+                            n++;
+                            if(n == 1){
+                                return board;
+                            }
                         //}                        
                     }
                     else{
@@ -539,9 +544,11 @@ public class Level {
     
     
     private static Entity[][] GoRight(Entity[][] board) {
+        int n = 0;
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
+                    n++;
                     if(board[i][j+1].Print() == 'o' || board[i][j+1].Print() == 'O' || board[i][j+1].Print() == 'P'
                             || board[i][j+1].Print() == 'L' || board[i][j+1].Print() == 'T'){ //Test the legitimcy of the movement
                         /*if(tmp == 'O'){
@@ -553,6 +560,11 @@ public class Level {
                             tmp = board[i][j+1].Print();*/
                             board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
                             board[i][j+1] = new Eceman(); //Remplace the legit case by eceman
+                            
+                            if(n == 1){
+                                System.out.println("test");
+                                return board;
+                            }
                         //}                        
                     }
                     else{

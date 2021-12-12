@@ -49,7 +49,7 @@ public class Game {
     
     private void NewGame(){
         ShowScreen.Show("Nouvelle partie");
-        this.level = 3;
+        this.level = 2;
         this.board = Level.Getlevel(level);
     }
         
