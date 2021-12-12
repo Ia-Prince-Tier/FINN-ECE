@@ -460,11 +460,37 @@ public class Level {
     }
     
     private static Entity[][] GoUp(Entity[][] board){
+        for(int i = 0; i < 15; i++){           
+            for(int j = 0; j < 19; j++){
+                if(board[i][j].Print() == 'E'){ //Found eceman on the board
+                    if(board[i-1][j].Print() == 'o' || board[i-1][j].Print() == 'P'){ //Test the legitimcy of the movement
+                        board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                        board[i-1][j] = new Eceman() ; //Remplace the legit case by eceman
+                    }
+                    else{
+                        System.out.println("no legit movement, please try again");
+                    }
+                }
+            }
+        }
         return board;
     }
     
     
     private static Entity[][] GoDown(Entity[][] board){
+        for(int i = 0; i < 15; i++){           
+            for(int j = 0; j < 19; j++){
+                if(board[i][j].Print() == 'E'){ //Found eceman on the board
+                    if(board[i+1][j].Print() == 'o' || board[i+1][j].Print() == 'P'){ //Test the legitimcy of the movement
+                        board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                        board[i+1][j] = new Eceman() ; //Remplace the legit case by eceman
+                    }
+                    else{
+                        System.out.println("no legit movement, please try again");
+                    }
+                }
+            }
+        }
         return board;
     }
     
@@ -487,6 +513,19 @@ public class Level {
     
     
     private static Entity[][] GoRight(Entity[][] board){
+        for(int i = 0; i < 15; i++){           
+            for(int j = 0; j < 19; j++){
+                if(board[i][j].Print() == 'E'){ //Found eceman on the board
+                    if(board[i][j+1].Print() == 'o' || board[i][j+1].Print() == 'P'){ //Test the legitimcy of the movement
+                        board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                        board[i][j+1] = new Eceman() ; //Remplace the legit case by eceman
+                    }
+                    else{
+                        System.out.println("no legit movement, please try again");
+                    }
+                }
+            }
+        }
         return board;
     }
     
