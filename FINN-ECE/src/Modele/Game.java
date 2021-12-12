@@ -6,6 +6,7 @@
 package Modele;
 import View.ShowScreen;
 import java.io.*;
+import javafx.util.Pair;
 
 /**
  *
@@ -17,12 +18,14 @@ public class Game {
     int brokenIce;
     int level;
     boolean inSubmenu;
+    private String tmp;
     
     public Game(){
         time = 0;
         brokenIce = 0;
         inSubmenu = false;
         level = 0;
+        tmp = "o";
     }
     
     
@@ -49,7 +52,7 @@ public class Game {
     
     private void NewGame(){
         ShowScreen.Show("Nouvelle partie");
-        this.level = 2;
+        this.level = 1;
         this.board = Level.Getlevel(level);
     }
         
@@ -113,10 +116,18 @@ public class Game {
     }
     
     public void UpdateLevel(char input){
+        Pair tapair = new Pair(1,1);
         if(input == 'z' || input == 'q' || input == 's' || input == 'd')
-            this.board = Level.Update(this.board,input);
+            tapair = Level.Update(board,input, tmp);
+            this.board = (Entity[][]) tapair.getKey();
+            this.tmp = (String) tapair.getValue();
+            System.out.println(tmp);
         if(CheckEndLevel()){
             ShowScreen.Show("WIN");
+            this.level += 1;
+            this.board = Level.Getlevel(level);
+            this.tmp = "o";
+            this.ShowLevel();
         }else
             ShowScreen.ShowLevel(this.board);
     }
