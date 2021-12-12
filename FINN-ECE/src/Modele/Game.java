@@ -46,11 +46,11 @@ public class Game {
     
     //Display the level
     public void ShowLevel(){
-        ShowScreen.ShowLevel(board,highScore);
+        ShowScreen.ShowLevel(board);
     }
     
     //Continue a saved game
-    private void Continue(){
+    private void Continue() throws IOException{
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Continuer");
         //récupérer ici dans un fichier le level sauvegarder
@@ -65,7 +65,7 @@ public class Game {
     private void NewGame(){
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Nouvelle partie");
-        this.level = 5;
+        this.level = 1;
         tapair = Level.Getlevel(level);
         this.board = (Entity[][]) tapair.getKey();
         this.tmp = (String) tapair.getValue();
@@ -80,7 +80,7 @@ public class Game {
     }
     
     //Display the score for the game
-    private void ShowScore(){
+    private void ShowScore() throws IOException{
         String menu = "";
         menu += "level 1 -> " + String.valueOf(LoadHighScore(1)) + "\n";  
         menu += "level 2 -> " + String.valueOf(LoadHighScore(2)) + "\n";  
@@ -99,7 +99,7 @@ public class Game {
     }
     
     
-    public boolean UpdateMainMenu(char input){
+    public boolean UpdateMainMenu(char input) throws IOException{
         
         if(inSubmenu){
             if(input != '1')
@@ -140,8 +140,8 @@ public class Game {
     }
     
     //Update the level in the way of the deplacement (right/left/up/down)
-    public boolean UpdateLevel(char input){
-        
+    public boolean UpdateLevel(char input,float seconds){
+        time += seconds;
         Pair tapair = new Pair(1,1);
         
         if(input == 'z' || input == 'q' || input == 's' || input == 'd'){
@@ -152,16 +152,16 @@ public class Game {
             this.board = Level.UpdateEnnemy(board);
         }    
         if(CheckEndLevel()){ //If the level is finish
-        if(CheckEndLevel()){
-            System.out.print(time);
             if(time < highScore)
                 SaveTime();
             ShowScreen.Show("WIN");
-            this.level += 1; //Pass to the next level
+            time = 0f;
+            this.level += 1; //Pas2s to the next level
             if(this.level > 5){
                 return true;
             }
             else{
+                SaveLevel();
                 tapair = Level.Getlevel(level);
                 this.board = (Entity[][]) tapair.getKey();
                 this.tmp = (String) tapair.getValue();
@@ -173,14 +173,12 @@ public class Game {
         }
         
         return false;
-    }
+   }
 
-    public int getLevel() {
-        return level;
-    }   
+  
     
     public void SaveTime(){
-  try {
+        try {
 
    String content = String.valueOf(this.time);;
    String fileName = "score_" + String.valueOf(this.level)+".txt";
@@ -227,10 +225,16 @@ public class Game {
         return Level.CheckEnd(board);
     }     
     
-    public void ShowHighScore(){
-        System.out.println("gagnééé!!!!");
+    public void ShowHighScore() throws IOException{
+        String menu = "";
+        menu += "level 1 -> " + String.valueOf(LoadHighScore(1)) + "\n";  
+        menu += "level 2 -> " + String.valueOf(LoadHighScore(2)) + "\n";  
+        menu += "level 3 -> " + String.valueOf(LoadHighScore(3)) + "\n";  
+        menu += "level 4 -> " + String.valueOf(LoadHighScore(4)) + "\n";  
+        menu += "Merci d'avoir jouer ! \n";
+        ShowScreen.Show(menu);
     }
-}
+
 
 
 

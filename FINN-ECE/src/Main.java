@@ -38,7 +38,7 @@ public class Main {
             char input = Movement.GetInput();
             long tempsFin = System.currentTimeMillis();
             float seconds = (tempsFin - tempsDebut) / 1000F;
-            game.UpdateLevel(input,seconds);
+            next = game.UpdateLevel(input,seconds);
         }
         
         game.ShowHighScore();

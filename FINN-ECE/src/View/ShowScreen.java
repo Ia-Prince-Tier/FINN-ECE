@@ -26,10 +26,9 @@ public class ShowScreen {
         }
     }
     
-    public static void ShowLevel(Entity[][] board,float time){
+    public static void ShowLevel(Entity[][] board){
         Clear();
         System.out.println();
-        System.out.println("HIGH SCORE = "+time);
         for(int i = 0; i < 15; i++){
             for(int j = 0; j < 19; j++){
                 System.out.print(" | " + board[i][j].Print());

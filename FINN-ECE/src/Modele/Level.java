@@ -77,7 +77,7 @@ public class Level {
         //Eceman display
         board[8][14] = new Eceman();
         
-        return new Pair<>(board, "o");
+        return new Pair(board,"o");
     }
     
     //Generate the level 2
@@ -212,7 +212,7 @@ public class Level {
         //Eceman display
         board[8][2] = new Eceman();
        
-        return board;
+        return new Pair(board,"o");
     }
     
     //Generate the level 3
@@ -524,7 +524,7 @@ public class Level {
                 }
             }
         }
-        return board;
+        return new Pair(board,tmp);
     }
     
     //Go down -- key : s
@@ -562,7 +562,7 @@ public class Level {
                 }
             }
         }
-        return board;
+        return new Pair(board,tmp);
     }
     
     //Go left -- key : q
@@ -671,7 +671,7 @@ public class Level {
                 }
             }
         }
-        return board;
+        return new Pair(board,tmp);
     }
     
     //Go up for the ennemy
