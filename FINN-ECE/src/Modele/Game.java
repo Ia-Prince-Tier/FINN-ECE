@@ -23,6 +23,7 @@ import java.io.IOException;
 public class Game {
     private Entity[][] board;
     private float time;
+    private float highScore;
     int brokenIce;
     int level;
     boolean inSubmenu;
@@ -34,6 +35,7 @@ public class Game {
         inSubmenu = false;
         level = 0;
         tmp = "o";
+        highScore = 10000f;
     }
     
     
@@ -48,7 +50,7 @@ public class Game {
     }
     
     public void ShowLevel(){
-        ShowScreen.ShowLevel(board);
+        ShowScreen.ShowLevel(board,highScore);
     }
     
     private void Continue() throws IOException{
@@ -56,8 +58,8 @@ public class Game {
         ShowScreen.Show("Continuer");
         //récupérer ici dans un fichier le level sauvegarder
         this.level = LoadLevel();
-        System.out.println(level);
         tapair = Level.Getlevel(level);
+        highScore = LoadHighScore();
         this.board = (Entity[][]) tapair.getKey();
         this.tmp = (String) tapair.getValue();
     }
@@ -79,9 +81,12 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
-    private void ShowScore(){
+    private void ShowScore() throws IOException{
         String menu = "";
-        menu += "le score ici, mais ca va etre technique je serai la vous inquietez pas\n";
+        menu += "level 1 -> " + String.valueOf(LoadHighScore(1)) + "\n";  
+        menu += "level 2 -> " + String.valueOf(LoadHighScore(2)) + "\n";  
+        menu += "level 3 -> " + String.valueOf(LoadHighScore(3)) + "\n";  
+        menu += "level 4 -> " + String.valueOf(LoadHighScore(4)) + "\n";  
         menu += "RETOUR -> 1";
         ShowScreen.Show(menu);
     }
@@ -138,10 +143,12 @@ public class Game {
             tapair = Level.Update(board,input, tmp);
             this.board = (Entity[][]) tapair.getKey();
             this.tmp = (String) tapair.getValue();
+            //this.board = Level.UpdateEnnemy(board);
             System.out.println(tmp);
         if(CheckEndLevel()){
             System.out.print(time);
-            SaveTime();
+            if(time < highScore)
+                SaveTime();
             ShowScreen.Show("WIN");
             this.level += 1;
             SaveLevel();
@@ -150,7 +157,7 @@ public class Game {
             this.tmp = (String) tapair.getValue();
             this.ShowLevel();
         }else
-            ShowScreen.ShowLevel(this.board);
+            ShowLevel();
     }
 
     public int getLevel() {
@@ -222,6 +229,48 @@ public class Game {
       }
     ligne = lecteurAvecBuffer.readLine();
     int i=Integer.parseInt(ligne);
+    lecteurAvecBuffer.close();
+    
+    return i;
+  }
+  
+  public float LoadHighScore () throws IOException
+  {
+    BufferedReader lecteurAvecBuffer = null;
+    String ligne;
+    String fileName = "score_" + String.valueOf(this.level)+".txt";
+    try
+      {
+	lecteurAvecBuffer = new BufferedReader(new FileReader(fileName));
+      }
+    catch(FileNotFoundException exc)
+      {
+	System.out.println("Erreur d'ouverture");
+        return 1000f;
+      }
+    ligne = lecteurAvecBuffer.readLine();
+    float i= Float.parseFloat(ligne);
+    lecteurAvecBuffer.close();
+    
+    return i;
+  }
+  
+  public float LoadHighScore (int niveau) throws IOException
+  {
+    BufferedReader lecteurAvecBuffer = null;
+    String ligne;
+    String fileName = "score_" + String.valueOf(niveau)+".txt";
+    try
+      {
+	lecteurAvecBuffer = new BufferedReader(new FileReader(fileName));
+      }
+    catch(FileNotFoundException exc)
+      {
+	System.out.println("Erreur d'ouverture");
+        return 1000f;
+      }
+    ligne = lecteurAvecBuffer.readLine();
+    float i= Float.parseFloat(ligne);
     lecteurAvecBuffer.close();
     
     return i;

@@ -34,6 +34,22 @@ public class Level {
         return null;
     }
     
+    /*public static Entity[][] UpdateEnnemy(Entity[][] board){
+        
+        
+      
+        int dir = random(1,2);
+        
+        
+        if(dir == 1 )
+               return goup
+        if(dir  == 2)
+            return go dow;
+        
+        
+        return null;
+    }*/
+    
     private static Pair<Entity[][], String> Level1() {
         
         Entity[][] board = new Entity[nb_lig][nb_col];

@@ -2,6 +2,7 @@
 import Controlleur.Movement;
 import Modele.Game;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -35,12 +36,9 @@ public class Main {
         game.ShowLevel();
         while(!next){
             long tempsDebut = System.currentTimeMillis();
-            System.out.print(tempsDebut);
-            long tempsFin = System.currentTimeMillis();
-            System.out.print(tempsFin);
-            float seconds = (tempsFin - tempsDebut) / 1000F;
-            System.out.print(seconds);
             char input = Movement.GetInput();
+            long tempsFin = System.currentTimeMillis();
+            float seconds = (tempsFin - tempsDebut) / 1000F;
             game.UpdateLevel(input,seconds);
         }
         
