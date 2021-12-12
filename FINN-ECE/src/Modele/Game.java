@@ -56,7 +56,7 @@ public class Game {
     private void NewGame(){
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Nouvelle partie");
-        this.level = 3;
+        this.level = 4;
         tapair = Level.Getlevel(level);
         this.board = (Entity[][]) tapair.getKey();
         this.tmp = (String) tapair.getValue();

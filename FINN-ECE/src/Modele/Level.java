@@ -581,6 +581,11 @@ public class Level {
                                 board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
                                 board[i][j-1] = eceman; //Remplace the legit case by eceman
                                 break;
+                            case 'x':
+                                tmp = "o";
+                                board[i][j] = new TunnelArrive();
+                                board[i][j-1] = eceman;
+                                break;
                             default:
                                 System.out.println("no legit movement, please try again");
                                 break;
@@ -589,6 +594,11 @@ public class Level {
                         if(n == 1){
                             return new Pair<>(board, tmp);
                         }
+                    }
+                    else if(board[i][j-1].Print() == 'x'){
+                        tmp = "x";
+                        board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                        board[i][j-5] = eceman;
                     }
                 }
             }       
