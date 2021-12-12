@@ -7,6 +7,14 @@ package Modele;
 import View.ShowScreen;
 import java.io.*;
 import javafx.util.Pair;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
@@ -43,11 +51,12 @@ public class Game {
         ShowScreen.ShowLevel(board);
     }
     
-    private void Continue(){
+    private void Continue() throws IOException{
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Continuer");
         //récupérer ici dans un fichier le level sauvegarder
-        this.level = 1;
+        this.level = LoadLevel();
+        System.out.println(level);
         tapair = Level.Getlevel(level);
         this.board = (Entity[][]) tapair.getKey();
         this.tmp = (String) tapair.getValue();
@@ -56,7 +65,8 @@ public class Game {
     private void NewGame(){
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Nouvelle partie");
-        this.level = 3;
+        this.level = 1;
+        SaveLevel();
         tapair = Level.Getlevel(level);
         this.board = (Entity[][]) tapair.getKey();
         this.tmp = (String) tapair.getValue();
@@ -83,7 +93,7 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
-    public boolean UpdateMainMenu(char input){
+    public boolean UpdateMainMenu(char input) throws IOException{
         
         if(inSubmenu){
             if(input != '1')
@@ -131,6 +141,7 @@ public class Game {
         if(CheckEndLevel()){
             ShowScreen.Show("WIN");
             this.level += 1;
+            SaveLevel();
             tapair = Level.Getlevel(level);
             this.board = (Entity[][]) tapair.getKey();
             this.tmp = (String) tapair.getValue();
@@ -138,13 +149,57 @@ public class Game {
         }else
             ShowScreen.ShowLevel(this.board);
     }
+
+    public int getLevel() {
+        return level;
+    }
+    
+    public void SaveLevel(){
+  try {
+
+   String content = Integer.toString(this.level);
+
+   File file = new File("Sauvegarde.txt");
+
+   // créer le fichier s'il n'existe pas
+   if (!file.exists()) {
+    file.createNewFile();
+   }
+
+   FileWriter fw = new FileWriter(file.getAbsoluteFile());
+   BufferedWriter bw = new BufferedWriter(fw);
+   bw.write(content);
+   bw.close();
+
+  } catch (IOException e) {
+   e.printStackTrace();
+  }
+ }
     
     private boolean CheckEndLevel(){
         return Level.CheckEnd(board);
     }
+
+
+
+  public int LoadLevel () throws IOException
+  {
+    BufferedReader lecteurAvecBuffer = null;
+    String ligne;
+
+    try
+      {
+	lecteurAvecBuffer = new BufferedReader(new FileReader("Sauvegarde.txt"));
+      }
+    catch(FileNotFoundException exc)
+      {
+	System.out.println("Erreur d'ouverture");
+      }
+    ligne = lecteurAvecBuffer.readLine();
+    int i=Integer.parseInt(ligne);
+    lecteurAvecBuffer.close();
     
-    
-    
-            
-    
-}
+    return i;
+  }
+} 
+
