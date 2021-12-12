@@ -62,7 +62,7 @@ public class Game {
     private void NewGame(){
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Nouvelle partie");
-        this.level = 1;
+        this.level = 5;
         tapair = Level.Getlevel(level);
         this.board = (Entity[][]) tapair.getKey();
         this.tmp = (String) tapair.getValue();
@@ -134,26 +134,35 @@ public class Game {
     }
     
     //Update the level in the way of the deplacement (right/left/up/down)
-    public void UpdateLevel(char input){
+    public boolean UpdateLevel(char input){
         
         Pair tapair = new Pair(1,1);
         
         if(input == 'z' || input == 'q' || input == 's' || input == 'd'){
-            tapair = Level.Update(board,input, tmp);
+            tapair = Level.Update(board, input, tmp);
             this.board = (Entity[][]) tapair.getKey(); //Get the board from the pair function
             this.tmp = (String) tapair.getValue(); //Get tmp from the pair function
             System.out.println(tmp);
+            this.board = Level.UpdateEnnemy(board);
         }    
         if(CheckEndLevel()){ //If the level is finish
             ShowScreen.Show("WIN");
             this.level += 1; //Pass to the next level
-            tapair = Level.Getlevel(level);
-            this.board = (Entity[][]) tapair.getKey();
-            this.tmp = (String) tapair.getValue();
-            this.ShowLevel();
+            if(this.level > 5){
+                return true;
+            }
+            else{
+                tapair = Level.Getlevel(level);
+                this.board = (Entity[][]) tapair.getKey();
+                this.tmp = (String) tapair.getValue();
+                this.ShowLevel();
+            }
         }
-        else
+        else{
             ShowScreen.ShowLevel(this.board);
+        }
+        
+        return false;
     }
 
     public int getLevel() {
@@ -164,4 +173,7 @@ public class Game {
         return Level.CheckEnd(board);
     }     
     
+    public void ShowHighScore(){
+        System.out.println("gagnééé!!!!");
+    }
 }

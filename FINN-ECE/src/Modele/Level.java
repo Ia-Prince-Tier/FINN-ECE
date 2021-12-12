@@ -465,6 +465,20 @@ public class Level {
         return null;
     }
     
+    public static Entity[][] UpdateEnnemy(Entity[][] board){
+        int random = 0 + (int)(Math.random()*(2 - 0) + 1);
+        
+        if(random == 1){
+            return GoUpEnnemy(board);
+        }
+        
+        if(random == 2){
+            return GoDownEnnemy(board);
+        }
+        
+        return null;
+    }
+    
     //Go up -- key : z
     private static Pair<Entity[][], String> GoUp(Entity[][] board, String tmp) {
         int n = 0;
@@ -556,7 +570,7 @@ public class Level {
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
                     Eceman eceman = (Eceman) board[i][j];
                     if(board[i][j-1].Print() == 'o' || board[i][j-1].Print() == 'O' || board[i][j-1].Print() == 'P'
-                            || board[i][j-1].Print() == 'L' || board[i][j-1].Print() == 'T'){ //Test the legitimcy of the movement
+                            || board[i][j-1].Print() == 'L' || board[i][j-1].Print() == 'T' || board[i][j-1].Print() == 'g'){ //Test the legitimcy of the movement
                         switch (tmp.charAt(0)) {
                             case 'O':
                                 tmp = board[i][j-1].toString(); //Save the case before eceman walk on it
@@ -589,6 +603,11 @@ public class Level {
                             case 'x':
                                 tmp = "o"; 
                                 board[i][j] = new TunnelArrive(); //Let the arrive of the tunnel fixed
+                                board[i][j-1] = eceman;
+                                break;
+                            case 'g':
+                                tmp = "o";
+                                board[i][j] = new EnnemyMove();
                                 board[i][j-1] = eceman;
                                 break;
                             default:
@@ -653,31 +672,43 @@ public class Level {
     }
     
     //Go up for the ennemy
-    public void GoUpEnnemy(Entity[][] board){
-        for (int i = 0; i <= nb_lig; i++){
-            for(int j = 0; j <= nb_col; j++){
+    public static Entity[][] GoUpEnnemy(Entity[][] board){
+        int n = 0;
+        for (int i = 0; i < nb_lig; i++){
+            for(int j = 0; j < nb_col; j++){
                 if(board[i][j].Print() == 'G'){ //Found the ennemy on the board
                     if(board[i+1][j].Print() == 'g'){ //Test the legitimacy of the movement
                         board[i][j].rpz = 'g'; //Remplace the ennemy by an ennemy deplacement case
                         board[i+1][j].rpz = 'G'; //Remplace the legit case by the ennemy
+                        n++;
+                        if(n == 1){
+                            return board;
+                        }
                     }
                 }
             }
         }
+        return board;
     }
     
     //Go down for the ennemy
-    public void GoDownEnnemy(Entity[][] board){
-        for (int i = 0; i <= nb_lig; i++){
-            for(int j = 0; j <= nb_col; j++){
+    public static Entity[][] GoDownEnnemy(Entity[][] board){
+        int n = 0;
+        for (int i = 0; i < nb_lig; i++){
+            for(int j = 0; j < nb_col; j++){
                 if(board[i][j].Print() == 'G'){ //Found the ennemy on the board
                     if(board[i-1][j].Print() == 'g'){ //Test the legitimacy of the movement
                         board[i][j].rpz = 'g'; //Remplace the ennemy by an ennemy deplacement case
                         board[i-1][j].rpz = 'G'; //Remplace the legit case by the ennemy
+                        n++;
+                        if(n == 1){
+                            return board;
+                        }
                     }
                 }
             }
         }
+        return board;
     }
     
     //Check if the level is finish

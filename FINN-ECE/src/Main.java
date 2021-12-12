@@ -22,7 +22,6 @@ public class Main {
         
         Game game = new Game();
         
-        
         game.ShowMainMenu(); //Display the menu in the console
         
         boolean next = false;
@@ -35,8 +34,10 @@ public class Main {
         game.ShowLevel();
         while(!next){
             char input = Movement.GetInput();
-            game.UpdateLevel(input); //Send the deplacement key (z/q/s/d) to the function which update the level by going right/left/up/down
+            next = game.UpdateLevel(input); //Send the deplacement key (z/q/s/d) to the function which update the level by going right/left/up/down
         }
+        
+        game.ShowHighScore();
         
     }
     
