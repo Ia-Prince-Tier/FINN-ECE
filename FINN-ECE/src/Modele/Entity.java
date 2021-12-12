@@ -9,11 +9,13 @@ package Modele;
  *
  * @author tad-t
  */
+
+//Abstract class : Entity which every object on the board extends
 public abstract class Entity {
     protected char rpz;
     
     public char Print(){
-        return rpz;
+        return rpz; //Char correspondant to a specific entity
     }
 
     @Override

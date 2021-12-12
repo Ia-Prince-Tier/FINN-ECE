@@ -23,19 +23,19 @@ public class Main {
         Game game = new Game();
         
         
-        game.ShowMainMenu();
+        game.ShowMainMenu(); //Display the menu in the console
         
         boolean next = false;
         while(!next){  
             char input = Movement.GetInput();
-            next = game.UpdateMainMenu(input);
+            next = game.UpdateMainMenu(input); //Send the user input for the menu to the function which display the user choice 
         }
         
         next = false;
         game.ShowLevel();
         while(!next){
             char input = Movement.GetInput();
-            game.UpdateLevel(input);
+            game.UpdateLevel(input); //Send the deplacement key (z/q/s/d) to the function which update the level by going right/left/up/down
         }
         
     }

@@ -16,7 +16,7 @@ public class Level {
     private final static int nb_col = 19;
     private static String tmp;
 
-     //ajouter au case les autres level et créer la fonction correspondante
+     //Switch case on id level
     public static Pair<Entity[][], String> Getlevel(int id) {
         
         switch(id){
@@ -34,6 +34,7 @@ public class Level {
         return null;
     }
     
+    //Generate the level 1
     private static Pair<Entity[][], String> Level1() {
         
         Entity[][] board = new Entity[nb_lig][nb_col];
@@ -79,6 +80,7 @@ public class Level {
         return new Pair<>(board, "o");
     }
     
+    //Generate the level 2
     private static Pair<Entity[][], String> Level2() {
         
         Entity[][] board = new Entity[nb_lig][nb_col];
@@ -161,9 +163,7 @@ public class Level {
             board[k][9] = new Wall();
         }
         board[7][12] = new Wall(); 
-                       
-        
-       
+                                      
         //Ice display                 
         for(int k = 4; k <=6; k++){
             
@@ -215,6 +215,7 @@ public class Level {
         return new Pair<>(board, "o");
     }
     
+    //Generate the level 3
     private static Pair<Entity[][], String> Level3() {
         
         Entity[][] board = new Entity[nb_lig][nb_col];
@@ -314,9 +315,9 @@ public class Level {
         board [5][12] = new FusionWall ();
         
         return new Pair<>(board, "o");
-
     }
     
+    //Generate the level 4
     private static Pair<Entity[][], String> Level4() {
         
         Entity[][] board = new Entity[nb_lig][nb_col];
@@ -386,6 +387,7 @@ public class Level {
         return new Pair<>(board, "o");
     }
     
+    //Generate the level 5
      private static Pair<Entity[][], String> Level5(){
         
         Entity[][] board = new Entity[nb_lig][nb_col];
@@ -444,7 +446,8 @@ public class Level {
         
         return new Pair<>(board, "o");
     }
-     
+    
+     //Update the board in case of the deplacement (go left/right/up/down)
     public static Pair<Entity[][], String> Update(Entity[][] board, char input, String tmp) {
         
         switch(input){
@@ -462,7 +465,7 @@ public class Level {
         return null;
     }
     
-    
+    //Go up -- key : z
     private static Pair<Entity[][], String> GoUp(Entity[][] board, String tmp) {
         int n = 0;
         for(int i = 0; i < 15; i++){           
@@ -473,20 +476,20 @@ public class Level {
                             || board[i-1][j].Print() == 'L' || board[i-1][j].Print() == 'T'){ //Test the legitimcy of the movement
                         switch (tmp.charAt(0)) {
                             case 'O':
-                                tmp = board[i-1][j].toString();
-                                board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
+                                tmp = board[i-1][j].toString(); //Save the case before eceman walk on it
+                                board[i][j] = new Ice(); //Remplace strong ice by ice after eceman walk on it
                                 board[i-1][j] = eceman; //Remplace the legit case by eceman
                                 break;
                             case 'o':
                                 tmp = board[i-1][j].toString();
                                 board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                                board[i-1][j] = eceman; //Remplace the legit case by eceman                        
+                                board[i-1][j] = eceman;                         
                                 break;
                             case 'T':
                                 tmp = "o";                                
                                 board[i-1][j] = eceman;
                                 for(int k = 0; k <= 3; k++){
-                                    board[i][j-k] = new MeltedIce();
+                                    board[i][j-k] = new MeltedIce(); //The mowner break the ice in front of it
                                 } 
                                 break;
                             default:
@@ -510,6 +513,7 @@ public class Level {
         return new Pair<>(board, tmp);
     }
     
+    //Go down -- key : s
     private static Pair<Entity[][], String> GoDown(Entity[][] board, String tmp) {
         int n = 0;
         for(int i = 0; i < 15; i++){           
@@ -520,14 +524,14 @@ public class Level {
                             || board[i+1][j].Print() == 'L' || board[i+1][j].Print() == 'T'){ //Test the legitimcy of the movement
                         switch (tmp.charAt(0)) {
                             case 'O':
-                                tmp = board[i+1][j].toString();
-                                board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
+                                tmp = board[i+1][j].toString(); //Save the case before eceman walk on it
+                                board[i][j] = new Ice(); //Remplace strong ice by ice after eceman walk on it
                                 board[i+1][j] = eceman; //Remplace the legit case by eceman
                                 break;
                             case 'o':
                                 tmp = board[i+1][j].toString();
                                 board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                                board[i+1][j] = eceman; //Remplace the legit case by eceman                        
+                                board[i+1][j] = eceman;                       
                                 break;
                             default:
                                 System.out.println("no legit movement, please try again");
@@ -544,6 +548,7 @@ public class Level {
         return new Pair<>(board, tmp);
     }
     
+    //Go left -- key : q
     private static Pair<Entity[][], String> GoLeft(Entity[][] board, String tmp) {
         int n = 0;
         for(int i = 0; i < 15; i++){           
@@ -554,36 +559,36 @@ public class Level {
                             || board[i][j-1].Print() == 'L' || board[i][j-1].Print() == 'T'){ //Test the legitimcy of the movement
                         switch (tmp.charAt(0)) {
                             case 'O':
-                                tmp = board[i][j-1].toString();
-                                board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
+                                tmp = board[i][j-1].toString(); //Save the case before eceman walk on it
+                                board[i][j] = new Ice(); //Remplace strong ice by ice after eceman walk on it
                                 board[i][j-1] = eceman; //Remplace the legit case by eceman
                                 break;
                             case 'o':
-                                if(eceman.isLeger()){
-                                    tmp = board[i][j-1].toString();
-                                    eceman.setNb();
-                                    if(eceman.isLeger()){
-                                        tmp = board[i][j-1].toString();
-                                    }else{
-                                        tmp = "o";
+                                if(eceman.isLeger()){ //If lightness potion
+                                    tmp = board[i][j-1].toString(); 
+                                    eceman.setNb(); //Start the count of case he can walk on without break them
+                                    if(eceman.isLeger()){ //Test if eceman had lightness potion
+                                        tmp = board[i][j-1].toString(); 
+                                    }else{ //Without lightness potion
+                                        tmp = "o"; 
                                     }
-                                    board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
-                                    board[i][j-1] = eceman; //Remplace the legit case by eceman
+                                    board[i][j] = new Ice(); //Eceman dont break the ice (cause of potion)
+                                    board[i][j-1] = eceman; 
                                 }else{
-                                    tmp = board[i][j-1].toString();
+                                    tmp = board[i][j-1].toString(); 
                                     board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
                                     board[i][j-1] = eceman; //Remplace the legit case by eceman     
                                 }                      
                                 break;
                             case 'L':
-                                tmp = "o";
-                                eceman.setLeger(true);
-                                board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
-                                board[i][j-1] = eceman; //Remplace the legit case by eceman
+                                tmp = "o"; 
+                                eceman.setLeger(true); //Activation of lightness capabilities
+                                board[i][j] = new Ice(); //No more potion after eceman catch it
+                                board[i][j-1] = eceman; 
                                 break;
                             case 'x':
-                                tmp = "o";
-                                board[i][j] = new TunnelArrive();
+                                tmp = "o"; 
+                                board[i][j] = new TunnelArrive(); //Let the arrive of the tunnel fixed
                                 board[i][j-1] = eceman;
                                 break;
                             default:
@@ -595,10 +600,10 @@ public class Level {
                             return new Pair<>(board, tmp);
                         }
                     }
-                    else if(board[i][j-1].Print() == 'x'){
-                        tmp = "x";
-                        board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                        board[i][j-5] = eceman;
+                    else if(board[i][j-1].Print() == 'x'){ //Eceman enter in the tunnel
+                        tmp = "x"; 
+                        board[i][j] = new MeltedIce(); 
+                        board[i][j-5] = eceman; //He arrive directly to the other side of the tunnel
                     }
                 }
             }       
@@ -606,7 +611,7 @@ public class Level {
         return new Pair<>(board, tmp);
     }
     
-    
+    //Go right -- key : d
     private static Pair<Entity[][], String> GoRight(Entity[][] board, String tmp) {
         int n = 0;
         for(int i = 0; i < 15; i++){           
@@ -614,17 +619,17 @@ public class Level {
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
                     Eceman eceman = (Eceman) board[i][j];
                     if(board[i][j+1].Print() == 'o' || board[i][j+1].Print() == 'O' || board[i][j+1].Print() == 'P'
-                            || board[i][j+1].Print() == 'L' || board[i][j+1].Print() == 'T'){ //Test the legitimcy of the movement
+                            || board[i][j+1].Print() == 'L' || board[i][j+1].Print() == 'T'){ //Test the legitimacy of the movement
                         switch (tmp.charAt(0)) {
                             case 'O':
-                                tmp = board[i][j+1].toString();
-                                board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
+                                tmp = board[i][j+1].toString(); //Save the case before eceman walk on it
+                                board[i][j] = new Ice(); //Remplace strong ice by ice after eceman walk on it
                                 board[i][j+1] = eceman; //Remplace the legit case by eceman
                                 break;
                             case 'o':
                                 tmp = board[i][j+1].toString();
                                 board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                                board[i][j+1] = eceman; //Remplace the legit case by eceman                        
+                                board[i][j+1] = eceman;                         
                                 break;
                             default:
                                 System.out.println("no legit movement, please try again");
@@ -635,11 +640,11 @@ public class Level {
                             return new Pair<>(board, tmp);
                         }
                     }
-                    else if(board[i][j+1].Print() == 'm'){
-                        tmp = "o";
-                        board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                        board[i][j+1] = eceman; //Remplace the legit case by eceman
-                        board[i][j+2] = new Wall();
+                    else if(board[i][j+1].Print() == 'm'){ //If want to move a movable wall
+                        tmp = "o"; 
+                        board[i][j] = new MeltedIce(); 
+                        board[i][j+1] = eceman; 
+                        board[i][j+2] = new Wall(); //Move the wall on the board
                     }
                 }
             }       
@@ -647,10 +652,40 @@ public class Level {
         return new Pair<>(board, tmp);
     }
     
+    //Go up for the ennemy
+    public void GoUpEnnemy(Entity[][] board){
+        for (int i = 0; i <= nb_lig; i++){
+            for(int j = 0; j <= nb_col; j++){
+                if(board[i][j].Print() == 'G'){ //Found the ennemy on the board
+                    if(board[i+1][j].Print() == 'g'){ //Test the legitimacy of the movement
+                        board[i][j].rpz = 'g'; //Remplace the ennemy by an ennemy deplacement case
+                        board[i+1][j].rpz = 'G'; //Remplace the legit case by the ennemy
+                    }
+                }
+            }
+        }
+    }
+    
+    //Go down for the ennemy
+    public void GoDownEnnemy(Entity[][] board){
+        for (int i = 0; i <= nb_lig; i++){
+            for(int j = 0; j <= nb_col; j++){
+                if(board[i][j].Print() == 'G'){ //Found the ennemy on the board
+                    if(board[i-1][j].Print() == 'g'){ //Test the legitimacy of the movement
+                        board[i][j].rpz = 'g'; //Remplace the ennemy by an ennemy deplacement case
+                        board[i-1][j].rpz = 'G'; //Remplace the legit case by the ennemy
+                    }
+                }
+            }
+        }
+    }
+    
+    //Check if the level is finish
     public static boolean CheckEnd(Entity[][] board) {
                 
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
+                //Condition of ending a level : no more ice and portal on the board
                 if(board[i][j].Print() == 'P' || board[i][j].Print() == 'o' || board[i][j].Print() == 'O')
                     return false;
             }
