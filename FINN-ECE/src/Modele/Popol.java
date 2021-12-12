@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for lightness potion
  * @author tad-t
  */
 public class Popol extends Entity {

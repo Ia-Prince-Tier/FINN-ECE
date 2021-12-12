@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for walls that can merge with movin bricks
  * @author tad-t
  */
 public class FusionWall extends Entity{

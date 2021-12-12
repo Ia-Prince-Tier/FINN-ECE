@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for End points
  * @author tad-t
  */
 public class Eportal extends Entity {

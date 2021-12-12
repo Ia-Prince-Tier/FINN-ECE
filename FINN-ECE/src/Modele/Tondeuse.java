@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for mower
  * @author tad-t
  */
 public class Tondeuse extends Entity {

@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for melted Ice
  * @author tad-t
  */
 public class MeltedIce extends Entity {

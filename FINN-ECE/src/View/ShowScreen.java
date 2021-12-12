@@ -8,18 +8,23 @@ package View;
 import Modele.Entity;
 
 /**
- *
+ *Allows to show each levels in the console
  * @author tad-t
  */
 public class ShowScreen {
     
-    //Show a string in the console 
+    /**Show a string in the console 
+     * 
+     * @param show 
+     */
     public static void Show(String show){
         Clear();
         System.out.println(show);
     }
     
-    //Clear the console between each board refresh
+    /**Clear the console between each board refresh
+     * 
+     */
     public static void Clear(){
         for(int i = 0; i < 100; i++){
             System.out.println();

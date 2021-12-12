@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for thick ice
  * @author tad-t
  */
 public class BigIce extends Entity{

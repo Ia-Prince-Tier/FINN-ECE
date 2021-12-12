@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for void display
  * @author tad-t
  */
 public class Void extends Entity {

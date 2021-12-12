@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for thin ice
  * @author tad-t
  */
 public class Ice extends Entity{

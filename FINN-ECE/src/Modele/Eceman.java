@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for Eceman
  * @author tad-t
  */
 public class Eceman extends Entity {
@@ -19,7 +19,11 @@ public class Eceman extends Entity {
         leger = false;
         nb = 3;
     }
-
+    
+    /**
+     * 
+     *  Bolean function for light potion 
+     */
     public void setLeger(boolean leger) {
         this.leger = leger;
         nb = 3;
@@ -28,7 +32,9 @@ public class Eceman extends Entity {
     public boolean isLeger() {
         return leger;
     }
-
+    /**
+     * Counter that decrements the number of tiles where the light potion can be used 
+     */
     public void setNb() {
         this.nb -= 1;
         if(nb == 0){

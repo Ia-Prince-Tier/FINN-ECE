@@ -8,7 +8,7 @@ package Modele;
 import javafx.util.Pair;
 
 /**
- *
+ *Allows you to generate each of the 5 levels and the movement functions
  * @author tad-t
  */
 public class Level {
@@ -16,7 +16,11 @@ public class Level {
     private final static int nb_col = 19;
     private static String tmp;
 
-     //Switch case on id level
+     /**Switch case on id level
+      * 
+      * @param id
+      * @return 
+      */
     public static Pair<Entity[][], String> Getlevel(int id) {
         
         switch(id){
@@ -34,12 +38,17 @@ public class Level {
         return null;
     }
     
-    //Generate the level 1
+    /**Generate the level 1
+     * 
+     * @return 
+     */
     private static Pair<Entity[][], String> Level1() {
         
         Entity[][] board = new Entity[nb_lig][nb_col];
         
-        //Empty display
+        /**Empty display
+         * 
+         */
         for(int i = 0; i < nb_lig; i++){
             for(int j = 0; j < nb_col; j++){
                 
@@ -47,7 +56,9 @@ public class Level {
             }
         }
         
-        //Wall display
+        /**Wall display
+         * 
+         */
         for(int k = 7; k <= 9; k++){
             
             board[k][1] = new Wall();
@@ -65,27 +76,38 @@ public class Level {
             board[9][k] = new Wall();
         }
         
-        //Ice display
+        /**Ice display
+         * 
+         */
         for(int k = 3; k <= 13; k++){
             
             board[8][k] = new Ice();
         }
         
-        //Portal display
+        /**Portal display
+         * 
+         */
         board[8][2] = new Eportal();
         
-        //Eceman display
+        /**Eceman display
+         * 
+         */
         board[8][14] = new Eceman();
         
         return new Pair(board,"o");
     }
     
-    //Generate the level 2
+    /**Generate the level 2
+     * 
+     * @return 
+     */
     private static Pair<Entity[][], String> Level2() {
         
         Entity[][] board = new Entity[nb_lig][nb_col];
         
-        //Empty display
+        /**Empty display
+         * 
+         */
         for(int i = 0; i < nb_lig; i++){
             for(int j = 0; j < nb_col; j++){
                 
@@ -93,7 +115,9 @@ public class Level {
             }
         }
         
-        //Wall display
+        /**Wall display
+         * 
+         */
         for(int k = 7; k <= 9; k++){
             
             board[k][1] = new Wall();
@@ -164,7 +188,9 @@ public class Level {
         }
         board[7][12] = new Wall(); 
                                       
-        //Ice display                 
+        /**Ice display  
+         * 
+         */               
         for(int k = 4; k <=6; k++){
             
             board[k][3] = new Ice();
@@ -203,19 +229,28 @@ public class Level {
         }
         board [5] [6] = new Ice(); 
         
-        //Strong ice display
+        /**Strong ice display
+         * 
+         */
         board[6][6] = new BigIce();
           
-        //Portal display
+        /**Portal display
+         * 
+         */
         board[5][14] = new Eportal();
         
-        //Eceman display
+        /**Eceman display
+         * 
+         */
         board[8][2] = new Eceman();
        
         return new Pair(board,"o");
     }
     
-    //Generate the level 3
+    /**Generate the level 3
+     * 
+     * @return 
+     */
     private static Pair<Entity[][], String> Level3() {
         
         Entity[][] board = new Entity[nb_lig][nb_col];
@@ -227,7 +262,9 @@ public class Level {
             }
         }
         
-        //Wall display
+        /**Wall display
+         * 
+         */
         for(int k = 3; k <= 11; k++){
             
             board[k][7] = new Wall();
@@ -266,7 +303,9 @@ public class Level {
             board[k][13] = new Wall();
         }
     
-        //Ice display
+        /**Ice display
+         * 
+         */
         for(int k = 4; k <= 6; k++){
             
             board[k][8] = new Ice();
@@ -294,35 +333,52 @@ public class Level {
     
         board[7][12] = new Ice();
         
-        //Portal display
+        /**Portal display
+         * 
+         */
         board[3][9] = new Eportal();
         
-        //Eceman display
+        /**Eceman display
+         * 
+         */
         board[11][13] = new Eceman();
     
-        //Potion de legerete display
+        /**Potion de legerete display
+         * 
+         */
         board[10][13] = new Popol();
     
-        //Tondeuse display
+        /**Tondeuse display
+         * 
+         */
         board[8][12] = new Tondeuse();
     
-        //movin bricks display
+        /**movin bricks display
+         * 
+         */
         board [4][9] = new Mbrick ();
         board [6][12] = new Mbrick ();
     
-        //Fusion Wall Display 
+        /**Fusion Wall Display 
+         * 
+         */
         board [4][10] = new FusionWall ();
         board [5][12] = new FusionWall ();
         
         return new Pair<>(board, "o");
     }
     
-    //Generate the level 4
+    /**Generate the level 4
+     * 
+     * @return 
+     */
     private static Pair<Entity[][], String> Level4() {
         
         Entity[][] board = new Entity[nb_lig][nb_col];
         
-        //Empty display
+        /**Empty display
+         * 
+         */
         for(int i = 0; i < nb_lig; i++){
             for(int j = 0; j < nb_col; j++){
                 
@@ -330,7 +386,9 @@ public class Level {
             }
         }
         
-        //Wall display
+        /**Wall display
+         * 
+         */
         for(int k = 7; k <= 9; k++){
             
             board[k][7] = new Wall();
@@ -364,7 +422,9 @@ public class Level {
             board[9][k] = new Wall();
         }
         
-        //Ice display
+        /**Ice display
+         * 
+         */
         for(int k = 3; k <= 6; k++){
             
             board[8][k] = new Ice();
@@ -374,25 +434,36 @@ public class Level {
             board[8][k] = new Ice();
         }
         
-        //Tunnel display
+        /**Tunnel display
+         * 
+         */
         board[8][6] = new TunnelArrive();
         board[8][10] = new TunnelDepart();
         
-        //Portal display
+        /**Portal display
+         * 
+         */
         board[8][2] = new Eportal();
         
-        //Eceman display
+        /**Eceman display
+         * 
+         */
         board[8][14] = new Eceman();
                 
         return new Pair<>(board, "o");
     }
     
-    //Generate the level 5
+    /**Generate the level 5
+     * 
+     * @return 
+     */
      private static Pair<Entity[][], String> Level5(){
         
         Entity[][] board = new Entity[nb_lig][nb_col];
         
-        //Empty display
+        /**Empty display
+         * 
+         */
         for(int i = 0; i < nb_lig; i++){
             for(int j = 0; j < nb_col; j++){
                 
@@ -400,7 +471,9 @@ public class Level {
             }
         }
         
-        //Wall display
+        /**Wall display
+         * 
+         */
         for(int k = 2; k <= 11; k++){
             
             board[4][k] = new Wall();
@@ -423,31 +496,47 @@ public class Level {
         board[5][11] = new Wall();
         board[9][6] = new Wall();
         
-        //Ice display
+        /**Ice display
+         * 
+         */
         for(int k = 3; k <= 10; k++){
             
             board[5][k] = new Ice();
         }
         
-        //Portal display
+        /**Portal display
+         * 
+         */
         board[5][3] = new Eportal();
         
-        //Eceman display
+        /**Eceman display
+         * 
+         */
         board[5][10] = new Eceman();
         
-        //Eceman move tiles display
+        /**Eceman move tiles display
+         * 
+         */
        for(int k = 2; k <= 8; k++){
             
             board[k][6] = new EnnemyMove();
         }
        
-       //Ennemi display
+       /**Ennemi display
+        * 
+        */
         board[5][6] = new Ennemy();
         
         return new Pair<>(board, "o");
     }
     
-     //Update the board in case of the deplacement (go left/right/up/down)
+     /**Update the board in case of the deplacement (go left/right/up/down)
+      * 
+      * @param board
+      * @param input
+      * @param tmp
+      * @return 
+      */
     public static Pair<Entity[][], String> Update(Entity[][] board, char input, String tmp) {
         
         switch(input){
@@ -479,7 +568,12 @@ public class Level {
         return null;
     }
     
-    //Go up -- key : z
+    /**Go up -- key : z
+     * 
+     * @param board
+     * @param tmp
+     * @return 
+     */
     private static Pair<Entity[][], String> GoUp(Entity[][] board, String tmp) {
         int n = 0;
         for(int i = 0; i < 15; i++){           
@@ -527,7 +621,12 @@ public class Level {
         return new Pair(board,tmp);
     }
     
-    //Go down -- key : s
+    /**Go down -- key : s
+     * 
+     * @param board
+     * @param tmp
+     * @return 
+     */
     private static Pair<Entity[][], String> GoDown(Entity[][] board, String tmp) {
         int n = 0;
         for(int i = 0; i < 15; i++){           
@@ -565,7 +664,12 @@ public class Level {
         return new Pair(board,tmp);
     }
     
-    //Go left -- key : q
+    /**Go left -- key : q
+     * 
+     * @param board
+     * @param tmp
+     * @return 
+     */
     private static Pair<Entity[][], String> GoLeft(Entity[][] board, String tmp) {
         int n = 0;
         for(int i = 0; i < 15; i++){           
@@ -633,7 +737,12 @@ public class Level {
         return new Pair<>(board, tmp);
     }
     
-    //Go right -- key : d
+    /**Go right -- key : d
+     * 
+     * @param board
+     * @param tmp
+     * @return 
+     */
     private static Pair<Entity[][], String> GoRight(Entity[][] board, String tmp) {
         int n = 0;
         for(int i = 0; i < 15; i++){           
@@ -674,7 +783,11 @@ public class Level {
         return new Pair(board,tmp);
     }
     
-    //Go up for the ennemy
+    /**Go up for the ennemy
+     * 
+     * @param board
+     * @return 
+     */
     public static Entity[][] GoUpEnnemy(Entity[][] board){
         int n = 0;
         for (int i = 0; i < nb_lig; i++){
@@ -694,7 +807,11 @@ public class Level {
         return board;
     }
     
-    //Go down for the ennemy
+    /**Go down for the ennemy
+     * 
+     * @param board
+     * @return 
+     */
     public static Entity[][] GoDownEnnemy(Entity[][] board){
         int n = 0;
         for (int i = 0; i < nb_lig; i++){
@@ -714,7 +831,11 @@ public class Level {
         return board;
     }
     
-    //Check if the level is finish
+    /**Check if the level is finish
+     * 
+     * @param board
+     * @return 
+     */
     public static boolean CheckEnd(Entity[][] board) {
                 
         for(int i = 0; i < 15; i++){           

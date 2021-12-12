@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for movement tiles of ennemy
  * @author louis
  */
 public class EnnemyMove extends Entity {

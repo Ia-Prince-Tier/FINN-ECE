@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for wall display
  * @author tad-t
  */
 public class Wall extends Entity {

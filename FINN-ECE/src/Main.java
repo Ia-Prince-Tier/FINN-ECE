@@ -23,12 +23,18 @@ public class Main {
         
         Game game = new Game();
         
-        game.ShowMainMenu(); //Display the menu in the console
+        game.ShowMainMenu(); 
+        /**
+         * Display the menu in the console
+         */
         
         boolean next = false;
         while(!next){  
             char input = Movement.GetInput();
-            next = game.UpdateMainMenu(input); //Send the user input for the menu to the function which display the user choice 
+            next = game.UpdateMainMenu(input); 
+            /**
+             * Send the user input for the menu to the function which display the user choice
+             */
         }
         
         next = false;

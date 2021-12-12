@@ -9,12 +9,14 @@ import java.io.*;
 import javafx.util.Pair;
 
 /**
- *
+ *Class that manages the menu, backups and best times
  * @author tad-t
  */
 public class Game {
     
-    //Declaration of variables
+    /**
+     * Declaration of variables
+     */
     private Entity[][] board;
     private float time;
     private float highScore;
@@ -23,7 +25,9 @@ public class Game {
     boolean inSubmenu;
     private String tmp;
     
-    //Constructor
+    /**
+    Constructor
+    */
     public Game(){
         time = 0;
         brokenIce = 0;
@@ -33,7 +37,9 @@ public class Game {
         highScore = 10000f;
     }
     
-    //Display the menu
+    /**Display the menu
+     * 
+     */
     public void ShowMainMenu(){
         String menu = "";
         menu += "Continuer -> 1\n";
@@ -44,12 +50,17 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
-    //Display the level
+    /**Display the level
+     * 
+     */
     public void ShowLevel(){
         ShowScreen.ShowLevel(board);
     }
     
-    //Continue a saved game
+    /**Continue a saved game
+     * 
+     * @throws IOException 
+     */
     private void Continue() throws IOException{
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Continuer");
@@ -61,7 +72,9 @@ public class Game {
         this.tmp = (String) tapair.getValue();
     }
     
-    //Start a new game
+    /**Start a new game
+     * 
+     */
     private void NewGame(){
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Nouvelle partie");
@@ -71,7 +84,9 @@ public class Game {
         this.tmp = (String) tapair.getValue();
     }
     
-    //Show the rules for play
+    /**Show the rules for play
+     * 
+     */
     private void ShowRegles(){
         String menu = "";
         menu += "les règles ici lol\n";
@@ -79,7 +94,10 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
-    //Display the score for the game
+    /**Display the score for the game
+     * 
+     * @throws IOException 
+     */
     private void ShowScore() throws IOException{
         String menu = "";
         menu += "level 1 -> " + String.valueOf(LoadHighScore(1)) + "\n";  
@@ -90,7 +108,10 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
-    //Show the deplacement
+    /**Show the deplacement
+     * 
+     * 
+     */
     private void ShowMovement(){
         String menu = "";
         menu += "comment jouer ici trop simple\n";
@@ -98,7 +119,12 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
-    
+    /**
+     * Function that allows you to return to the menu when you are in a sub-menu
+     * @param input
+     * @return
+     * @throws IOException 
+     */
     public boolean UpdateMainMenu(char input) throws IOException{
         
         if(inSubmenu){
@@ -111,7 +137,9 @@ public class Game {
             }
         }
 
-        //Switch case on the menu
+        /**Switch case on the menu
+         * 
+         */
         switch(input){
             
             case '1':
@@ -139,7 +167,12 @@ public class Game {
         return false;
     }
     
-    //Update the level in the way of the deplacement (right/left/up/down)
+    /**Update the level in the way of the deplacement (right/left/up/down)
+     * 
+     * @param input
+     * @param seconds
+     * @return 
+     */
     public boolean UpdateLevel(char input,float seconds){
         time += seconds;
         Pair tapair = new Pair(1,1);
@@ -156,7 +189,7 @@ public class Game {
                 SaveTime();
             ShowScreen.Show("WIN");
             time = 0f;
-            this.level += 1; //Pas2s to the next level
+            this.level += 1; //Pass to the next level
             if(this.level > 5){
                 return true;
             }
@@ -176,7 +209,9 @@ public class Game {
    }
 
   
-    
+    /**
+     * Function which saves the time in a file 
+     */
     public void SaveTime(){
         try {
 
@@ -198,7 +233,9 @@ public class Game {
    e.printStackTrace();
   }
  }
-    
+    /**
+     * Function wich save the Leveld ID in a file
+     */
     public void SaveLevel(){
   try {
 
@@ -220,11 +257,18 @@ public class Game {
    e.printStackTrace();
   }
  }
-    
+    /**
+     * Check for winning conditions
+     * @return 
+     */
     private boolean CheckEndLevel(){
         return Level.CheckEnd(board);
     }     
     
+    /**
+     * Show best score for each levels
+     * @throws IOException 
+     */
     public void ShowHighScore() throws IOException{
         String menu = "";
         menu += "level 1 -> " + String.valueOf(LoadHighScore(1)) + "\n";  
@@ -236,7 +280,11 @@ public class Game {
     }
 
 
-
+    /**
+     * Allows you to load level you mhad finished
+     * @return
+     * @throws IOException 
+     */
 
   public int LoadLevel () throws IOException
   {
@@ -257,7 +305,11 @@ public class Game {
     
     return i;
   }
-  
+  /**
+   * Allows you to Load your highscore
+   * @return
+   * @throws IOException 
+   */
   public float LoadHighScore () throws IOException
   {
     BufferedReader lecteurAvecBuffer = null;
@@ -279,6 +331,11 @@ public class Game {
     return i;
   }
   
+  /**
+   * Allows you to Load your highscore
+   * @return
+   * @throws IOException 
+   */
   public float LoadHighScore (int niveau) throws IOException
   {
     BufferedReader lecteurAvecBuffer = null;

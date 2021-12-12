@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for moving brick tiles
  * @author tad-t
  */
 public class Mbrick extends Entity {

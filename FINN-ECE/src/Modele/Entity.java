@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *Abstract class for each type of entity
  * @author tad-t
  */
 

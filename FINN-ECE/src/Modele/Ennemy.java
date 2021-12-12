@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for Ennemy
  * @author louis
  */
 public class Ennemy extends Entity {

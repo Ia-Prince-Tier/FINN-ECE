@@ -6,7 +6,7 @@
 package Modele;
 
 /**
- *
+ *entity class for Teleportation tunnel departure
  * @author louis
  */
 public class TunnelDepart extends Entity{
