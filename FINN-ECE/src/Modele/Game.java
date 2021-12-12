@@ -65,8 +65,12 @@ public class Game {
     private void NewGame(){
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Nouvelle partie");
+<<<<<<< HEAD
         this.level = 1;
         SaveLevel();
+=======
+        this.level = 4;
+>>>>>>> Tadzio
         tapair = Level.Getlevel(level);
         this.board = (Entity[][]) tapair.getKey();
         this.tmp = (String) tapair.getValue();
@@ -152,6 +156,7 @@ public class Game {
 
     public int getLevel() {
         return level;
+<<<<<<< HEAD
     }
     
     public void SaveLevel(){
@@ -175,6 +180,9 @@ public class Game {
    e.printStackTrace();
   }
  }
+=======
+    }   
+>>>>>>> Tadzio
     
     private boolean CheckEndLevel(){
         return Level.CheckEnd(board);

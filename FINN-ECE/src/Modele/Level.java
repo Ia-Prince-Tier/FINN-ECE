@@ -468,18 +468,26 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
+                    Eceman eceman = (Eceman) board[i][j];
                     if(board[i-1][j].Print() == 'o' || board[i-1][j].Print() == 'O' || board[i-1][j].Print() == 'P'
                             || board[i-1][j].Print() == 'L' || board[i-1][j].Print() == 'T'){ //Test the legitimcy of the movement
                         switch (tmp.charAt(0)) {
                             case 'O':
                                 tmp = board[i-1][j].toString();
                                 board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
-                                board[i-1][j] = new Eceman(); //Remplace the legit case by eceman
+                                board[i-1][j] = eceman; //Remplace the legit case by eceman
                                 break;
                             case 'o':
                                 tmp = board[i-1][j].toString();
                                 board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                                board[i-1][j] = new Eceman(); //Remplace the legit case by eceman                        
+                                board[i-1][j] = eceman; //Remplace the legit case by eceman                        
+                                break;
+                            case 'T':
+                                tmp = "o";                                
+                                board[i-1][j] = eceman;
+                                for(int k = 0; k <= 3; k++){
+                                    board[i][j-k] = new MeltedIce();
+                                } 
                                 break;
                             default:
                                 System.out.println("no legit movement, please try again");
@@ -489,6 +497,12 @@ public class Level {
                         if(n == 1){
                             return new Pair<>(board, tmp);
                         }
+                    }
+                    else if(board[i-1][j].Print() == 'm'){
+                        tmp = "o";
+                        board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                        board[i-1][j] = eceman; //Remplace the legit case by eceman
+                        board[i-2][j] = new Wall();
                     }
                 }
             }
@@ -501,18 +515,19 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
+                    Eceman eceman = (Eceman) board[i][j];
                     if(board[i+1][j].Print() == 'o' || board[i+1][j].Print() == 'O' || board[i+1][j].Print() == 'P'
                             || board[i+1][j].Print() == 'L' || board[i+1][j].Print() == 'T'){ //Test the legitimcy of the movement
                         switch (tmp.charAt(0)) {
                             case 'O':
                                 tmp = board[i+1][j].toString();
                                 board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
-                                board[i+1][j] = new Eceman(); //Remplace the legit case by eceman
+                                board[i+1][j] = eceman; //Remplace the legit case by eceman
                                 break;
                             case 'o':
                                 tmp = board[i+1][j].toString();
                                 board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                                board[i+1][j] = new Eceman(); //Remplace the legit case by eceman                        
+                                board[i+1][j] = eceman; //Remplace the legit case by eceman                        
                                 break;
                             default:
                                 System.out.println("no legit movement, please try again");
@@ -566,6 +581,11 @@ public class Level {
                                 board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
                                 board[i][j-1] = eceman; //Remplace the legit case by eceman
                                 break;
+                            case 'x':
+                                tmp = "o";
+                                board[i][j] = new TunnelArrive();
+                                board[i][j-1] = eceman;
+                                break;
                             default:
                                 System.out.println("no legit movement, please try again");
                                 break;
@@ -574,6 +594,11 @@ public class Level {
                         if(n == 1){
                             return new Pair<>(board, tmp);
                         }
+                    }
+                    else if(board[i][j-1].Print() == 'x'){
+                        tmp = "x";
+                        board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                        board[i][j-5] = eceman;
                     }
                 }
             }       
@@ -587,18 +612,19 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
+                    Eceman eceman = (Eceman) board[i][j];
                     if(board[i][j+1].Print() == 'o' || board[i][j+1].Print() == 'O' || board[i][j+1].Print() == 'P'
                             || board[i][j+1].Print() == 'L' || board[i][j+1].Print() == 'T'){ //Test the legitimcy of the movement
                         switch (tmp.charAt(0)) {
                             case 'O':
                                 tmp = board[i][j+1].toString();
                                 board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
-                                board[i][j+1] = new Eceman(); //Remplace the legit case by eceman
+                                board[i][j+1] = eceman; //Remplace the legit case by eceman
                                 break;
                             case 'o':
                                 tmp = board[i][j+1].toString();
                                 board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                                board[i][j+1] = new Eceman(); //Remplace the legit case by eceman                        
+                                board[i][j+1] = eceman; //Remplace the legit case by eceman                        
                                 break;
                             default:
                                 System.out.println("no legit movement, please try again");
@@ -608,6 +634,12 @@ public class Level {
                         if(n == 1){
                             return new Pair<>(board, tmp);
                         }
+                    }
+                    else if(board[i][j+1].Print() == 'm'){
+                        tmp = "o";
+                        board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                        board[i][j+1] = eceman; //Remplace the legit case by eceman
+                        board[i][j+2] = new Wall();
                     }
                 }
             }       
