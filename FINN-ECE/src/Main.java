@@ -23,13 +23,12 @@ public class Main {
         
         Game game = new Game();
         
-        
-        game.ShowMainMenu();
+        game.ShowMainMenu(); //Display the menu in the console
         
         boolean next = false;
         while(!next){  
             char input = Movement.GetInput();
-            next = game.UpdateMainMenu(input);
+            next = game.UpdateMainMenu(input); //Send the user input for the menu to the function which display the user choice 
         }
         
         next = false;
@@ -41,6 +40,8 @@ public class Main {
             float seconds = (tempsFin - tempsDebut) / 1000F;
             game.UpdateLevel(input,seconds);
         }
+        
+        game.ShowHighScore();
         
     }
     

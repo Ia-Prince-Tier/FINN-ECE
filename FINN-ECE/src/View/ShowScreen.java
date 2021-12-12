@@ -13,12 +13,13 @@ import Modele.Entity;
  */
 public class ShowScreen {
     
-    
+    //Show a string in the console 
     public static void Show(String show){
         Clear();
         System.out.println(show);
     }
     
+    //Clear the console between each board refresh
     public static void Clear(){
         for(int i = 0; i < 100; i++){
             System.out.println();

@@ -7,20 +7,14 @@ package Modele;
 import View.ShowScreen;
 import java.io.*;
 import javafx.util.Pair;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  *
  * @author tad-t
  */
 public class Game {
+    
+    //Declaration of variables
     private Entity[][] board;
     private float time;
     private float highScore;
@@ -29,6 +23,7 @@ public class Game {
     boolean inSubmenu;
     private String tmp;
     
+    //Constructor
     public Game(){
         time = 0;
         brokenIce = 0;
@@ -38,7 +33,7 @@ public class Game {
         highScore = 10000f;
     }
     
-    
+    //Display the menu
     public void ShowMainMenu(){
         String menu = "";
         menu += "Continuer -> 1\n";
@@ -49,11 +44,13 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
+    //Display the level
     public void ShowLevel(){
         ShowScreen.ShowLevel(board,highScore);
     }
     
-    private void Continue() throws IOException{
+    //Continue a saved game
+    private void Continue(){
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Continuer");
         //récupérer ici dans un fichier le level sauvegarder
@@ -64,16 +61,17 @@ public class Game {
         this.tmp = (String) tapair.getValue();
     }
     
+    //Start a new game
     private void NewGame(){
         Pair tapair = new Pair(1,1);
         ShowScreen.Show("Nouvelle partie");
-        this.level = 1;
-        SaveLevel();
+        this.level = 5;
         tapair = Level.Getlevel(level);
         this.board = (Entity[][]) tapair.getKey();
         this.tmp = (String) tapair.getValue();
     }
-        
+    
+    //Show the rules for play
     private void ShowRegles(){
         String menu = "";
         menu += "les règles ici lol\n";
@@ -81,7 +79,8 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
-    private void ShowScore() throws IOException{
+    //Display the score for the game
+    private void ShowScore(){
         String menu = "";
         menu += "level 1 -> " + String.valueOf(LoadHighScore(1)) + "\n";  
         menu += "level 2 -> " + String.valueOf(LoadHighScore(2)) + "\n";  
@@ -91,6 +90,7 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
+    //Show the deplacement
     private void ShowMovement(){
         String menu = "";
         menu += "comment jouer ici trop simple\n";
@@ -98,7 +98,8 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
-    public boolean UpdateMainMenu(char input) throws IOException{
+    
+    public boolean UpdateMainMenu(char input){
         
         if(inSubmenu){
             if(input != '1')
@@ -110,7 +111,9 @@ public class Game {
             }
         }
 
+        //Switch case on the menu
         switch(input){
+            
             case '1':
                 Continue();
                 return true;
@@ -136,33 +139,45 @@ public class Game {
         return false;
     }
     
-    public void UpdateLevel(char input,float seconds){
+    //Update the level in the way of the deplacement (right/left/up/down)
+    public boolean UpdateLevel(char input){
+        
         Pair tapair = new Pair(1,1);
-        time += seconds;
-        if(input == 'z' || input == 'q' || input == 's' || input == 'd')
-            tapair = Level.Update(board,input, tmp);
-            this.board = (Entity[][]) tapair.getKey();
-            this.tmp = (String) tapair.getValue();
-            //this.board = Level.UpdateEnnemy(board);
+        
+        if(input == 'z' || input == 'q' || input == 's' || input == 'd'){
+            tapair = Level.Update(board, input, tmp);
+            this.board = (Entity[][]) tapair.getKey(); //Get the board from the pair function
+            this.tmp = (String) tapair.getValue(); //Get tmp from the pair function
             System.out.println(tmp);
+            this.board = Level.UpdateEnnemy(board);
+        }    
+        if(CheckEndLevel()){ //If the level is finish
         if(CheckEndLevel()){
             System.out.print(time);
             if(time < highScore)
                 SaveTime();
             ShowScreen.Show("WIN");
-            this.level += 1;
-            SaveLevel();
-            tapair = Level.Getlevel(level);
-            this.board = (Entity[][]) tapair.getKey();
-            this.tmp = (String) tapair.getValue();
-            this.ShowLevel();
-        }else
-            ShowLevel();
+            this.level += 1; //Pass to the next level
+            if(this.level > 5){
+                return true;
+            }
+            else{
+                tapair = Level.Getlevel(level);
+                this.board = (Entity[][]) tapair.getKey();
+                this.tmp = (String) tapair.getValue();
+                this.ShowLevel();
+            }
+        }
+        else{
+            ShowScreen.ShowLevel(this.board);
+        }
+        
+        return false;
     }
 
     public int getLevel() {
         return level;
-    }
+    }   
     
     public void SaveTime(){
   try {
@@ -210,7 +225,12 @@ public class Game {
     
     private boolean CheckEndLevel(){
         return Level.CheckEnd(board);
+    }     
+    
+    public void ShowHighScore(){
+        System.out.println("gagnééé!!!!");
     }
+}
 
 
 

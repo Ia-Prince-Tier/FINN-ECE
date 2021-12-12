@@ -13,8 +13,7 @@ import java.util.Scanner;
  */
 public class Movement {
     
-    
-    
+    //Char scanner to get the key deplacement of the user (z/q/s/d) 
     public static char GetInput(){
         Scanner sc = new Scanner(System.in);
         return (sc.next().charAt(0)); 
