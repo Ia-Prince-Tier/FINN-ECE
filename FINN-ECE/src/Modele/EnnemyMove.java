@@ -7,10 +7,11 @@ package Modele;
 
 /**
  *
- * @author tad-t
+ * @author louis
  */
 public class EnnemyMove extends Entity {
-    public EnnemyMove () {
+
+    public EnnemyMove() {
         rpz = 'g';
     }
     

@@ -6,6 +6,15 @@
 package Modele;
 import View.ShowScreen;
 import java.io.*;
+import javafx.util.Pair;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
@@ -14,15 +23,19 @@ import java.io.*;
 public class Game {
     private Entity[][] board;
     private float time;
+    private float highScore;
     int brokenIce;
     int level;
     boolean inSubmenu;
+    private String tmp;
     
     public Game(){
         time = 0;
         brokenIce = 0;
         inSubmenu = false;
         level = 0;
+        tmp = "o";
+        highScore = 10000f;
     }
     
     
@@ -32,26 +45,33 @@ public class Game {
         menu += "Nouvelle partie -> 2\n";
         menu += "Règles -> 3\n";
         menu += "Score -> 4\n";
-        menu += "Touche déplacement -> 4\n";
+        menu += "Touche déplacement -> 5\n";
         ShowScreen.Show(menu);
     }
     
     public void ShowLevel(){
-        ShowScreen.ShowLevel(board);
+        ShowScreen.ShowLevel(board,highScore);
     }
     
-    private void Continue(){
+    private void Continue() throws IOException{
+        Pair tapair = new Pair(1,1);
         ShowScreen.Show("Continuer");
         //récupérer ici dans un fichier le level sauvegarder
-        this.level = 1;
-        board = Level.Getlevel(level);
-        
+        this.level = LoadLevel();
+        tapair = Level.Getlevel(level);
+        highScore = LoadHighScore();
+        this.board = (Entity[][]) tapair.getKey();
+        this.tmp = (String) tapair.getValue();
     }
     
     private void NewGame(){
+        Pair tapair = new Pair(1,1);
         ShowScreen.Show("Nouvelle partie");
-        this.level = 5;
-        board = Level.Getlevel(level);
+        this.level = 1;
+        SaveLevel();
+        tapair = Level.Getlevel(level);
+        this.board = (Entity[][]) tapair.getKey();
+        this.tmp = (String) tapair.getValue();
     }
         
     private void ShowRegles(){
@@ -61,9 +81,12 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
-    private void ShowScore(){
+    private void ShowScore() throws IOException{
         String menu = "";
-        menu += "le score ici, mais ca va etre technique je serai la vous inquietez pas\n";
+        menu += "level 1 -> " + String.valueOf(LoadHighScore(1)) + "\n";  
+        menu += "level 2 -> " + String.valueOf(LoadHighScore(2)) + "\n";  
+        menu += "level 3 -> " + String.valueOf(LoadHighScore(3)) + "\n";  
+        menu += "level 4 -> " + String.valueOf(LoadHighScore(4)) + "\n";  
         menu += "RETOUR -> 1";
         ShowScreen.Show(menu);
     }
@@ -75,7 +98,7 @@ public class Game {
         ShowScreen.Show(menu);
     }
     
-    public boolean UpdateMainMenu(char input){
+    public boolean UpdateMainMenu(char input) throws IOException{
         
         if(inSubmenu){
             if(input != '1')
@@ -113,21 +136,144 @@ public class Game {
         return false;
     }
     
-    public void UpdateLevel(char input){
+    public void UpdateLevel(char input,float seconds){
+        Pair tapair = new Pair(1,1);
+        time += seconds;
         if(input == 'z' || input == 'q' || input == 's' || input == 'd')
-            board = Level.Update(board,input);
+            tapair = Level.Update(board,input, tmp);
+            this.board = (Entity[][]) tapair.getKey();
+            this.tmp = (String) tapair.getValue();
+            //this.board = Level.UpdateEnnemy(board);
+            System.out.println(tmp);
         if(CheckEndLevel()){
-            ShowScreen.Show("GAGNeraccent");
+            System.out.print(time);
+            if(time < highScore)
+                SaveTime();
+            ShowScreen.Show("WIN");
+            this.level += 1;
+            SaveLevel();
+            tapair = Level.Getlevel(level);
+            this.board = (Entity[][]) tapair.getKey();
+            this.tmp = (String) tapair.getValue();
+            this.ShowLevel();
         }else
-            ShowScreen.ShowLevel(board);
+            ShowLevel();
     }
+
+    public int getLevel() {
+        return level;
+    }
+    
+    public void SaveTime(){
+  try {
+
+   String content = String.valueOf(this.time);;
+   String fileName = "score_" + String.valueOf(this.level)+".txt";
+   File file = new File(fileName);
+
+   // créer le fichier s'il n'existe pas
+   if (!file.exists()) {
+    file.createNewFile();
+   }
+
+   FileWriter fw = new FileWriter(file.getAbsoluteFile());
+   BufferedWriter bw = new BufferedWriter(fw);
+   bw.write(content);
+   bw.close();
+
+  } catch (IOException e) {
+   e.printStackTrace();
+  }
+ }
+    
+    public void SaveLevel(){
+  try {
+
+   String content = Integer.toString(this.level);
+
+   File file = new File("Sauvegarde.txt");
+
+   // créer le fichier s'il n'existe pas
+   if (!file.exists()) {
+    file.createNewFile();
+   }
+
+   FileWriter fw = new FileWriter(file.getAbsoluteFile());
+   BufferedWriter bw = new BufferedWriter(fw);
+   bw.write(content);
+   bw.close();
+
+  } catch (IOException e) {
+   e.printStackTrace();
+  }
+ }
     
     private boolean CheckEndLevel(){
         return Level.CheckEnd(board);
     }
+
+
+
+  public int LoadLevel () throws IOException
+  {
+    BufferedReader lecteurAvecBuffer = null;
+    String ligne;
+
+    try
+      {
+	lecteurAvecBuffer = new BufferedReader(new FileReader("Sauvegarde.txt"));
+      }
+    catch(FileNotFoundException exc)
+      {
+	System.out.println("Erreur d'ouverture");
+      }
+    ligne = lecteurAvecBuffer.readLine();
+    int i=Integer.parseInt(ligne);
+    lecteurAvecBuffer.close();
     
+    return i;
+  }
+  
+  public float LoadHighScore () throws IOException
+  {
+    BufferedReader lecteurAvecBuffer = null;
+    String ligne;
+    String fileName = "score_" + String.valueOf(this.level)+".txt";
+    try
+      {
+	lecteurAvecBuffer = new BufferedReader(new FileReader(fileName));
+      }
+    catch(FileNotFoundException exc)
+      {
+	System.out.println("Erreur d'ouverture");
+        return 1000f;
+      }
+    ligne = lecteurAvecBuffer.readLine();
+    float i= Float.parseFloat(ligne);
+    lecteurAvecBuffer.close();
     
+    return i;
+  }
+  
+  public float LoadHighScore (int niveau) throws IOException
+  {
+    BufferedReader lecteurAvecBuffer = null;
+    String ligne;
+    String fileName = "score_" + String.valueOf(niveau)+".txt";
+    try
+      {
+	lecteurAvecBuffer = new BufferedReader(new FileReader(fileName));
+      }
+    catch(FileNotFoundException exc)
+      {
+	System.out.println("Erreur d'ouverture");
+        return 1000f;
+      }
+    ligne = lecteurAvecBuffer.readLine();
+    float i= Float.parseFloat(ligne);
+    lecteurAvecBuffer.close();
     
-            
-    
-}
+    return i;
+  }
+} 
+

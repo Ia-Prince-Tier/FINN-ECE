@@ -7,12 +7,12 @@ package Modele;
 
 /**
  *
- * @author louis
+ * @author tad-t
  */
-public class Ennemy extends Entity {
-
-    public Ennemy() {
-        rpz = 'G';
+public class Tondeuse extends Entity {
+    
+    public Tondeuse () {
+        rpz = 'T';
     }
-     
+    
 }

@@ -15,6 +15,12 @@ public abstract class Entity {
     public char Print(){
         return rpz;
     }
+
+    @Override
+    
+    public String toString() {
+        return String.valueOf(rpz);
+    }
     
     
         
