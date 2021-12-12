@@ -44,16 +44,22 @@ public class Game {
     }
     
     private void Continue(){
+        Pair tapair = new Pair(1,1);
         ShowScreen.Show("Continuer");
         //récupérer ici dans un fichier le level sauvegarder
         this.level = 1;
-        this.board = Level.Getlevel(level);       
+        tapair = Level.Getlevel(level);
+        this.board = (Entity[][]) tapair.getKey();
+        this.tmp = (String) tapair.getValue();
     }
     
     private void NewGame(){
+        Pair tapair = new Pair(1,1);
         ShowScreen.Show("Nouvelle partie");
-        this.level = 1;
-        this.board = Level.Getlevel(level);
+        this.level = 3;
+        tapair = Level.Getlevel(level);
+        this.board = (Entity[][]) tapair.getKey();
+        this.tmp = (String) tapair.getValue();
     }
         
     private void ShowRegles(){
@@ -125,8 +131,9 @@ public class Game {
         if(CheckEndLevel()){
             ShowScreen.Show("WIN");
             this.level += 1;
-            this.board = Level.Getlevel(level);
-            this.tmp = "o";
+            tapair = Level.Getlevel(level);
+            this.board = (Entity[][]) tapair.getKey();
+            this.tmp = (String) tapair.getValue();
             this.ShowLevel();
         }else
             ShowScreen.ShowLevel(this.board);

@@ -313,7 +313,7 @@ public class Level {
         board [4][10] = new FusionWall ();
         board [5][12] = new FusionWall ();
         
-        return new Pair<>(board, "L");
+        return new Pair<>(board, "o");
 
     }
     
@@ -462,10 +462,6 @@ public class Level {
         return null;
     }
     
-    /*public static Pair<Entity[][], String> getTwo(){
-        
-        return new Pair<Entity[][], String>(board, "testttt");
-    }*/
     
     private static Pair<Entity[][], String> GoUp(Entity[][] board, String tmp) {
         int n = 0;
@@ -538,18 +534,37 @@ public class Level {
         for(int i = 0; i < 15; i++){           
             for(int j = 0; j < 19; j++){
                 if(board[i][j].Print() == 'E'){ //Found eceman on the board
+                    Eceman eceman = (Eceman) board[i][j];
                     if(board[i][j-1].Print() == 'o' || board[i][j-1].Print() == 'O' || board[i][j-1].Print() == 'P'
                             || board[i][j-1].Print() == 'L' || board[i][j-1].Print() == 'T'){ //Test the legitimcy of the movement
                         switch (tmp.charAt(0)) {
                             case 'O':
                                 tmp = board[i][j-1].toString();
                                 board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
-                                board[i][j-1] = new Eceman(); //Remplace the legit case by eceman
+                                board[i][j-1] = eceman; //Remplace the legit case by eceman
                                 break;
                             case 'o':
-                                tmp = board[i][j-1].toString();
-                                board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
-                                board[i][j-1] = new Eceman(); //Remplace the legit case by eceman                        
+                                if(eceman.isLeger()){
+                                    tmp = board[i][j-1].toString();
+                                    eceman.setNb();
+                                    if(eceman.isLeger()){
+                                        tmp = board[i][j-1].toString();
+                                    }else{
+                                        tmp = "o";
+                                    }
+                                    board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
+                                    board[i][j-1] = eceman; //Remplace the legit case by eceman
+                                }else{
+                                    tmp = board[i][j-1].toString();
+                                    board[i][j] = new MeltedIce(); //Remplace ice by water after eceman walk on it
+                                    board[i][j-1] = eceman; //Remplace the legit case by eceman     
+                                }                      
+                                break;
+                            case 'L':
+                                tmp = "o";
+                                eceman.setLeger(true);
+                                board[i][j] = new Ice(); //Remplace ice by water after eceman walk on it
+                                board[i][j-1] = eceman; //Remplace the legit case by eceman
                                 break;
                             default:
                                 System.out.println("no legit movement, please try again");

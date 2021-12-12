@@ -10,6 +10,7 @@ package Modele;
  * @author tad-t
  */
 public class Tondeuse extends Entity {
+    
     public Tondeuse () {
         rpz = 'T';
     }

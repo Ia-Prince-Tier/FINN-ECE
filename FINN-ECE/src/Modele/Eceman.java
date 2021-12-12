@@ -10,8 +10,33 @@ package Modele;
  * @author tad-t
  */
 public class Eceman extends Entity {
+    
+    private boolean leger;
+    private int nb;
+    
     public Eceman() {
         rpz = 'E';
+        leger = false;
+        nb = 3;
     }
+
+    public void setLeger(boolean leger) {
+        this.leger = leger;
+        nb = 3;
+    }
+
+    public boolean isLeger() {
+        return leger;
+    }
+
+    public void setNb() {
+        this.nb -= 1;
+        if(nb == 0){
+            leger = false;
+        }
+    }
+    
+    
+    
     
 }
