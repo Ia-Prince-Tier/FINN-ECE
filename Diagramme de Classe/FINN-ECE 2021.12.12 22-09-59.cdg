@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="FINN-ECE">
+  <ClassDiagramComponents>
+    <Class name="Movement" package="Controlleur" visibility="public" xPosition="1124.0" yPosition="654.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="GetInput" returnType="char" visibility="public" isStatic="true"/>
+      </Methods>
+    </Class>
+    <Class name="Main" package="" visibility="public" xPosition="1225.0" yPosition="770.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="BigIce" package="Modele" visibility="public" xPosition="1775.0" yPosition="738.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Eceman" package="Modele" visibility="public" xPosition="1225.0" yPosition="20.0">
+      <Fields>
+        <Field name="leger" type="boolean" visibility="private"/>
+        <Field name="nb" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setLeger" returnType="void" visibility="public">
+          <Argument type="boolean" name="leger"/>
+        </Method>
+        <Method name="isLeger" returnType="boolean" visibility="public"/>
+        <Method name="setNb" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Ennemy" package="Modele" visibility="public" xPosition="1432.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="EnnemyMove" package="Modele" visibility="public" xPosition="1590.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Entity" package="Modele" visibility="public" isAbstract="true" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="rpz" type="char" visibility="protected"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="Print" returnType="char" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Eportal" package="Modele" visibility="public" xPosition="2013.0" yPosition="132.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="FusionWall" package="Modele" visibility="public" xPosition="1603.0" yPosition="738.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Game" package="Modele" visibility="public" xPosition="1946.0" yPosition="343.0">
+      <Fields>
+        <Field name="board" type="Entity[][]" visibility="private"/>
+        <Field name="time" type="float" visibility="private"/>
+        <Field name="highScore" type="float" visibility="private"/>
+        <Field name="brokenIce" type="int" visibility="package"/>
+        <Field name="level" type="int" visibility="package"/>
+        <Field name="inSubmenu" type="boolean" visibility="package"/>
+        <Field name="tmp" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="ShowMainMenu" returnType="void" visibility="public"/>
+        <Method name="ShowLevel" returnType="void" visibility="public"/>
+        <Method name="Continue" returnType="void" visibility="private"/>
+        <Method name="NewGame" returnType="void" visibility="private"/>
+        <Method name="ShowRegles" returnType="void" visibility="private"/>
+        <Method name="ShowScore" returnType="void" visibility="private"/>
+        <Method name="ShowMovement" returnType="void" visibility="private"/>
+        <Method name="UpdateMainMenu" returnType="boolean" visibility="public">
+          <Argument type="char" name="input"/>
+        </Method>
+        <Method name="UpdateLevel" returnType="boolean" visibility="public">
+          <Argument type="char" name="input"/>
+          <Argument type="float" name="seconds"/>
+        </Method>
+        <Method name="SaveTime" returnType="void" visibility="public"/>
+        <Method name="SaveLevel" returnType="void" visibility="public"/>
+        <Method name="CheckEndLevel" returnType="boolean" visibility="private"/>
+        <Method name="ShowHighScore" returnType="void" visibility="public"/>
+        <Method name="LoadLevel" returnType="int" visibility="public"/>
+        <Method name="LoadHighScore" returnType="float" visibility="public"/>
+        <Method name="LoadHighScore" returnType="float" visibility="public">
+          <Argument type="int" name="niveau"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Ice" package="Modele" visibility="public" xPosition="1432.0" yPosition="738.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Level" package="Modele" visibility="public" xPosition="1124.0" yPosition="217.0">
+      <Fields>
+        <Field name="nb_lig" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="nb_col" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="tmp" type="String" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="Getlevel" returnType="Pair&lt;Entity[][], String&gt;" visibility="public" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="Level1" returnType="Pair&lt;Entity[][], String&gt;" visibility="private" isStatic="true"/>
+        <Method name="Level2" returnType="Pair&lt;Entity[][], String&gt;" visibility="private" isStatic="true"/>
+        <Method name="Level3" returnType="Pair&lt;Entity[][], String&gt;" visibility="private" isStatic="true"/>
+        <Method name="Level4" returnType="Pair&lt;Entity[][], String&gt;" visibility="private" isStatic="true"/>
+        <Method name="Level5" returnType="Pair&lt;Entity[][], String&gt;" visibility="private" isStatic="true"/>
+        <Method name="Update" returnType="Pair&lt;Entity[][], String&gt;" visibility="public" isStatic="true">
+          <Argument type="Entity[][]" name="board"/>
+          <Argument type="char" name="input"/>
+          <Argument type="String" name="tmp"/>
+        </Method>
+        <Method name="UpdateEnnemy" returnType="Entity[][]" visibility="public" isStatic="true">
+          <Argument type="Entity[][]" name="board"/>
+        </Method>
+        <Method name="GoUp" returnType="Pair&lt;Entity[][], String&gt;" visibility="private" isStatic="true">
+          <Argument type="Entity[][]" name="board"/>
+          <Argument type="String" name="tmp"/>
+        </Method>
+        <Method name="GoDown" returnType="Pair&lt;Entity[][], String&gt;" visibility="private" isStatic="true">
+          <Argument type="Entity[][]" name="board"/>
+          <Argument type="String" name="tmp"/>
+        </Method>
+        <Method name="GoLeft" returnType="Pair&lt;Entity[][], String&gt;" visibility="private" isStatic="true">
+          <Argument type="Entity[][]" name="board"/>
+          <Argument type="String" name="tmp"/>
+        </Method>
+        <Method name="GoRight" returnType="Pair&lt;Entity[][], String&gt;" visibility="private" isStatic="true">
+          <Argument type="Entity[][]" name="board"/>
+          <Argument type="String" name="tmp"/>
+        </Method>
+        <Method name="GoUpEnnemy" returnType="Entity[][]" visibility="public" isStatic="true">
+          <Argument type="Entity[][]" name="board"/>
+        </Method>
+        <Method name="GoDownEnnemy" returnType="Entity[][]" visibility="public" isStatic="true">
+          <Argument type="Entity[][]" name="board"/>
+        </Method>
+        <Method name="CheckEnd" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="Entity[][]" name="board"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Mbrick" package="Modele" visibility="public" xPosition="1590.0" yPosition="217.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="MeltedIce" package="Modele" visibility="public" xPosition="1617.0" yPosition="343.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Popol" package="Modele" visibility="public" xPosition="1843.0" yPosition="234.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Tondeuse" package="Modele" visibility="public" xPosition="2013.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="TunnelArrive" package="Modele" visibility="public" xPosition="1603.0" yPosition="624.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="TunnelDepart" package="Modele" visibility="public" xPosition="1775.0" yPosition="624.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Void" package="Modele" visibility="public" xPosition="2013.0" yPosition="241.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="Wall" package="Modele" visibility="public" xPosition="1788.0" yPosition="343.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Class name="ShowScreen" package="View" visibility="public" xPosition="1585.0" yPosition="473.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="Show" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="show"/>
+        </Method>
+        <Method name="Clear" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="ShowLevel" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Entity[][]" name="board"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="View.ShowScreen" target="Modele.Entity" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Modele.Level" target="Modele.Entity" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="Modele.EnnemyMove" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.Eportal" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.TunnelDepart" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.FusionWall" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.Ice" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.BigIce" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.Eceman" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.MeltedIce" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.TunnelArrive" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.Ennemy" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.Popol" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.Wall" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.Mbrick" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.Tondeuse" target="Modele.Entity"/>
+    <IsRelation name="is" source="Modele.Void" target="Modele.Entity"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
